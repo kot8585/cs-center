@@ -60,11 +60,7 @@ public class MemberController {
 	
 			return "/mypage/mypage";
 		}
-		
-		
-		
 	}
-	
 	@RequestMapping("/member/findForm")
 	public void findForm() {
 		
@@ -108,4 +104,23 @@ public class MemberController {
 		return "/mypage/mypage";
 	}
 	
+	@RequestMapping(value = "/member/logout")
+	public String logout(HttpServletRequest req) {
+		System.out.println("MemController.logout()");
+		HttpSession session = req.getSession(false);
+		session.removeAttribute("id");
+		session.invalidate();
+		return "member/loginForm";
+	}
+
+	@RequestMapping(value = "/member/out")
+	public String out(HttpServletRequest req) {
+		System.out.println("MemController.out()");
+		HttpSession session = req.getSession(false);
+		String id = (String) session.getAttribute("id");
+		service.delMember(id);
+		session.removeAttribute("id");
+		session.invalidate();
+		return "member/loginForm";
+	}
 }
