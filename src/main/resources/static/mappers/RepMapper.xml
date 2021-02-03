@@ -16,7 +16,7 @@
 	SELECT * FROM reply WHERE writer=#{writer}
 	</select>
 	
-	<select id="getReplyByNum" parameterType="int" resultMap="rep">
+	<select id="getReplyByBoardNum" parameterType="int" resultMap="rep">
 	SELECT * FROM reply WHERE board_num=#{board_num}
 	</select>
 	
