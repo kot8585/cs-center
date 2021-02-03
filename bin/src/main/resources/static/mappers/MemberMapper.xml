@@ -29,9 +29,6 @@
 	
 	<select id="getIdPwd" resultMap="member" parameterType="String">
 		SELECT id, password FROM member WHERE email=#{email} AND name=#{name}
-	</select> 
-	
-	<delete id="delete" parameterType="String">
-		delete member where id=#{id}
-	</delete>
+	</select>
+
 </mapper>
