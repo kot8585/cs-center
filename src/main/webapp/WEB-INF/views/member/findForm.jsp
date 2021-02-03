@@ -13,11 +13,8 @@ $(document).ready(function(){
 		$.post("/member/find", {email: $("#email").val(), name: $("#name").val()})
 		.done(function(data){
 			$("#findId").text(data);
-			$("#findPwd").text(data);
+			
 		})
-		
-	
-		
 	})
 })
 	
@@ -41,8 +38,6 @@ $(document).ready(function(){
 		</tr>
 	</table>
 </form>
-
-회원님의 아이디는 <div id="findId"></div> 입니다.<br>
-회원님의 비밀번호는 <div id="findPwd"></div> 입니다.
+<div id="findId"></div>
 </body>
 </html>
