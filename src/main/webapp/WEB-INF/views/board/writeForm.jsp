@@ -17,19 +17,26 @@
 				<th>제목</th><td><input type="text" name="title"></td>
 			</tr>
 			<tr>
-				<th>내용</th><td><textarea rows="10" cols="33" ></textarea></td>
+				<th>비밀번호</th><td><input type="password" name="pwd" ></td>
 			</tr>
+			
 			<tr>
-				<th>작성자</th><td><input type="text" name="writer" value="${sessionScope.id }"></td>
+				<th>내용</th><td><textarea name="content" rows="10" cols="33" ></textarea></td>
 			</tr>
+
 			<tr>
 				<th>파일첨부1</th><td><input type="file" name="file1"></td>
+			</tr>
+			<tr>
 				<th>파일첨부2</th><td><input type="file" name="file2"></td>
+			</tr>
+			<tr>
 				<th>파일첨부3</th><td><input type="file" name="file3"></td>
 			</tr>
 			<tr><td><input type="reset" value="취소">	</td>
 			<td><input type="submit" value="등록"></td></tr>
 		</table>
+		<input type="hidden" name="path" value="123"> 
 	</form>
 </body>
 </html>

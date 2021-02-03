@@ -7,15 +7,17 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-<script src="http://code.jquery.com/jquery-latest.min.js">
-var sessionId = "<%=session.getAttribute("id") %>"
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+var sessionId = '<%=session.getAttribute("id") %>'
 
 	$(document).ready(function(){ //로그인 되어있는지 확인하기
 		$("#write").click(function(){
-			if(sessionId == '' || sessionId == null){
+			if(sessionId == '' || sessionId == 'null'){
 			alert("로그인 후에 이용할 수 있습니다.");
-			location.href= "${pageContext.request.contextPath }/member/login";
+			location.href= "${pageContext.request.contextPath }/member/loginForm";
 		} else {
+			//로그인 안되어있을시
 			location.href="${pageContext.request.contextPath }/board/writeForm";
 		}});
 	});
@@ -36,14 +38,14 @@ var sessionId = "<%=session.getAttribute("id") %>"
 		<c:forEach var="b" items="${list}">
 			<tr>
 				<td><c:out value="${b.num}" /></td>
-				<td><c:out value="${b.title}" /></td>
+				<td><a href="${pageContext.request.contextPath }/board/detail?num=${b.num } ">${b.title} </a></td>
 				<td><c:out value="${b.writer}" /></td>
 				<td><fmt:formatDate pattern="yyyy-MM-dd" value="${b.b_date}" /></td>
 			</tr>
 		</c:forEach>
 	</table>
 	세션아이디 : <c:out value="${sessionScope.id}" />
-	<input type="button" id ="write" value="글쓰기" onclick="write()">
+	<input type="button" id ="write" value="글쓰기">
 	
 </body>
 </html>

@@ -26,11 +26,11 @@ public class Board {
 		super();
 	}
 
-	public Board(int num, String pwd, String writer, String title, String content, Date b_date, String path,
+	public Board(int num, String password, String writer, String title, String content, Date b_date, String path,
 			ArrayList<Reply> reps, MultipartFile file1, MultipartFile file2, MultipartFile file3) {
 		super();
 		this.num = num;
-		this.pwd = pwd;
+		this.pwd = password;
 		this.writer = writer;
 		this.title = title;
 		this.content = content;
@@ -49,6 +49,7 @@ public class Board {
 	public void setNum(int num) {
 		this.num = num;
 	}
+
 
 	public String getPwd() {
 		return pwd;
