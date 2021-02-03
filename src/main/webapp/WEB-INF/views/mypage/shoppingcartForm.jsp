@@ -6,20 +6,31 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	
+});
+</script>
 </head>
 <body>
 <c:if test="${empty list }">
  등록된 상품이 없다. 
 </c:if>
 <c:if test="${not empty list }">
-<table>
-<tr><th>주문자ID</th><th>제품번호</th><th>가격</th><th>날짜</th>
+<table border="1">
+<tr><th>주문자ID</th><th>제품번호</th><th>가격</th><th>날짜</th><th>구매</th>
 <c:forEach var="p" items="${list }">
 <tr>
 	<td>${ p.m_id }</td>
-	<td>${ p.p_num }</td>
+	<td><a href="${ pageContext.request.contextPath }/product/detail?num=${ p.p_num}">${ p.p_num }</a></td>
 	<td>${ p.cost }</td>
 	<td>${ p.o_date }</td>
+	<td>
+	<!-- TODO : order/order에 p_num이 들어가게. -->
+	<input type="hidden" id="p_num${ p.p_num }" value="${ p.p_num }">
+	<input type="button" class="buy_btn" value="구매" onclick="javascript:num='${ p.p_num }'">
+	</td>
 </tr>
 </c:forEach>
 </table>
