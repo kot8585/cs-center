@@ -11,32 +11,34 @@
 <script>
 var sessionId = '<%=session.getAttribute("id") %>'
 
-	$(document).ready(function(){ //·Î±×ÀÎ µÇ¾îÀÖ´ÂÁö È®ÀÎÇÏ±â
-		$("#write").click(function(){
-			if(sessionId == '' || sessionId == 'null'){
-			alert("·Î±×ÀÎ ÈÄ¿¡ ÀÌ¿ëÇÒ ¼ö ÀÖ½À´Ï´Ù.");
-			location.href= "${pageContext.request.contextPath }/member/loginForm";
-		} else {
-			//·Î±×ÀÎ ¾ÈµÇ¾îÀÖÀ»½Ã
-			location.href="${pageContext.request.contextPath }/board/writeForm";
-		}});
-	});
+   $(document).ready(function(){ //ë¡œê·¸ì¸ ë˜ì–´ìˆëŠ”ì§€ í™•ì¸í•˜ê¸°
+      $("#write").click(function(){
+         if(sessionId == '' || sessionId == null){
+         alert("ë¡œê·¸ì¸ í›„ì— ì´ìš©í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.");
+         location.href= "${pageContext.request.contextPath }/member/loginForm";
+      } else {
+         //ë¡œê·¸ì¸ ì•ˆë˜ì–´ìˆì„ì‹œ
+         location.href="${pageContext.request.contextPath }/board/writeForm";
+      }});
+   });
+
 </script>
 </head>
 <body>
-	<!-- °øÁö»çÇ×, ¹®ÀÇ»çÇ× ¸®½ºÆ® -->
-	<h3>°í°´¼¾ÅÍ</h3>
+	
+	<h3></h3>
 	<table border="1" cellspacing="0">
 		<thead>
 			<tr>
-				<th>¹øÈ£</th>
-				<th>Á¦¸ñ</th>
-				<th>ÀÛ¼ºÀÚ</th>
-				<th>µî·ÏÀÏ</th>
+				<th>ë²ˆí˜¸</th>
+				<th>ì œëª©</th>
+				<th>ì‘ì„±ì</th>
+				<th>ë“±ë¡ì¼</th>
 			</tr>
 		</thead>
 		<c:forEach var="b" items="${list}">
 			<tr>
+
 				<td><c:out value="${b.num}" /></td>
 				<td><a href="${pageContext.request.contextPath }/board/detail?num=${b.num } ">${b.title} </a></td>
 				<td><c:out value="${b.writer}" /></td>
@@ -44,8 +46,8 @@ var sessionId = '<%=session.getAttribute("id") %>'
 			</tr>
 		</c:forEach>
 	</table>
-	¼¼¼Ç¾ÆÀÌµğ : <c:out value="${sessionScope.id}" />
-	<input type="button" id ="write" value="±Û¾²±â">
-	
+	ì„¸ì…˜ì•„ì´ë”” : <c:out value="${sessionScope.id}" />
+	<input type="button" id ="write" value="ê¸€ì“°ê¸°">
+
 </body>
 </html>

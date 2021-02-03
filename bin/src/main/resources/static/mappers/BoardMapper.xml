@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.board.BoardMapper">
+	<resultMap type="com.example.demo.board.Board" id="board">
+		<result property="num" column="num"/>
+		<result property="pwd" column="pwd"/>
+		<result property="writer" column="writer"/>
+		<result property="title" column="title"/>
+		<result property="content" column="content"/>
+		<result property="path" column="path"/>
+	</resultMap>
+	
+	<insert id="insert" parameterType="com.example.demo.board.Board">
+		insert into board values(#{num}, #{pwd}, #{writer},	#{title}, #{content}, sysdate, #{path})
+	</insert>
+	
+	<select id="select" resultMap="board" parameterType="int">
+		select * from board where num=#{num}
+	</select>
+	
+	<select id="selectAll" resultMap="board">
+		select * from board order by num
+	</select>
+	
+	<select id="selectById" resultMap="board" parameterType="String">
+		select * from board where id=#{id} order by num
+	</select>
+
+	<delete id="delete" parameterType="int">
+		delete board where num=#{num}
+	</delete>
+	
+	<update id="update" parameterType="com.example.demo.board.Board">
+		update member set pwd=#{pwd}, title=#{title}, content=#{content},email=#{email} where id=#{id}
+	</update>
+	
+	<select id="getMyQuestionListById" parameterType="String" resultMap="board">
+	SELECT * FROM board WHERE writer=#{writer}
+	</select>
+	
+	<select id="getNum" resultType="int">
+		SELECT seq_board.nextval FROM dual
+	</select>
+</mapper>

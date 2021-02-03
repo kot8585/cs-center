@@ -77,7 +77,7 @@ public class MyPageController {
 		
 		ArrayList<Board> list = boardService.getMyQuestionListById(id);
 		for (Board board : list) {
-			ArrayList<Reply> reply = repService.getReplyByNum(board.getNum());
+			ArrayList<Reply> reply = repService.getReplyByBoardNum(board.getNum());
 			board.setReps(reply);
 		}
 		
