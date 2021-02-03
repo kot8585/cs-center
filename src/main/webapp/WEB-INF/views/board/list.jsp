@@ -8,14 +8,16 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.min.js">
+var sessionId = "<%=session.getAttribute("id") %>"
+
 	$(document).ready(function(){ //로그인 되어있는지 확인하기
-		founction writeForm(sessionScope.id == '' || sessionScope.id == null){
+		$("#write").click(function(){
+			if(sessionId == '' || sessionId == null){
 			alert("로그인 후에 이용할 수 있습니다.");
 			location.href= "${pageContext.request.contextPath }/member/login";
 		} else {
 			location.href="${pageContext.request.contextPath }/board/writeForm";
-		}
-		
+		}});
 	});
 </script>
 </head>
@@ -40,8 +42,8 @@
 			</tr>
 		</c:forEach>
 	</table>
-	
-	<a href="javascript:writeForm('${sessionScope.id }')">글쓰기</a>
+	세션아이디 : <c:out value="${sessionScope.id}" />
+	<input type="button" id ="write" value="글쓰기" onclick="write()">
 	
 </body>
 </html>

@@ -15,5 +15,5 @@ public interface BoardMapper {
 	void delete(int num);
 	void update(Board b);
 	ArrayList<Board> getMyQuestionListById(String id);
-	
+	int getNum();
 }	
