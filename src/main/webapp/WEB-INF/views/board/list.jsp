@@ -1,23 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 var sessionId = '<%=session.getAttribute("id") %>'
 
-   $(document).ready(function(){ //로그인 되어있는지 확인하기
+   $(document).ready(function(){ //한글확인하기
       $("#write").click(function(){
          if(sessionId == '' || sessionId == null){
-         alert("로그인 후에 이용할 수 있습니다.");
+         alert("로그인을 먼저 해주세요");
          location.href= "${pageContext.request.contextPath }/member/loginForm";
       } else {
-         //로그인 안되어있을시
+         
          location.href="${pageContext.request.contextPath }/board/writeForm";
       }});
    });
@@ -30,10 +30,10 @@ var sessionId = '<%=session.getAttribute("id") %>'
 	<table border="1" cellspacing="0">
 		<thead>
 			<tr>
-				<th>번호</th>
+				<th>글번호</th>
 				<th>제목</th>
 				<th>작성자</th>
-				<th>등록일</th>
+				<th>작성날짜</th>
 			</tr>
 		</thead>
 		<c:forEach var="b" items="${list}">
@@ -46,8 +46,8 @@ var sessionId = '<%=session.getAttribute("id") %>'
 			</tr>
 		</c:forEach>
 	</table>
-	세션아이디 : <c:out value="${sessionScope.id}" />
-	<input type="button" id ="write" value="글쓰기">
+	�몄�����대�� : <c:out value="${sessionScope.id}" />
+	<input type="button" id ="write" value="글작성">
 
 </body>
 </html>
