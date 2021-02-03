@@ -42,5 +42,9 @@ public class BoardService {
 		return mapper.getMyQuestionListById(id);
 	}
 	
+	public int getNum() {
+		return mapper.getNum();
+	}
+	
 	
 }

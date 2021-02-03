@@ -13,7 +13,7 @@
 	</resultMap>
 	
 	<insert id="insert" parameterType="com.example.demo.board.Board">
-		insert into board values(seq_board.nextval, #{pwd}, #{writer},	#{title}, #{content}, sysdate, #{path})
+		insert into board values(#{num}, #{pwd}, #{writer},	#{title}, #{content}, sysdate, #{path})
 	</insert>
 	
 	<select id="select" resultMap="board" parameterType="int">
@@ -40,4 +40,7 @@
 	SELECT * FROM board WHERE writer=#{writer}
 	</select>
 	
+	<select id="getNum" resultType="int">
+		SELECT seq_board.nextval FROM dual
+	</select>
 </mapper>
