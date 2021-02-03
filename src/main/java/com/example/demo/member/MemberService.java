@@ -21,7 +21,9 @@ public class MemberService {
 		// TODO Auto-generated method stub
 		mapper.update(m);
 	}
-	
+	public void delMember(String id) {
+		mapper.delete(id);
+	}
 	public Member getIdPwd(String email, String name) {
 		return mapper.getIdPwd(email, name);
 	}

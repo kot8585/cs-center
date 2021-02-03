@@ -7,43 +7,53 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-<script src="http://code.jquery.com/jquery-latest.min.js">
-var sessionId = "<%=session.getAttribute("id") %>"
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+var sessionId = '<%=session.getAttribute("id") %>'
 
-	$(document).ready(function(){ //·Î±×ÀÎ µÇ¾îÀÖ´ÂÁö È®ÀÎÇÏ±â
-		$("#write").click(function(){
-			if(sessionId == '' || sessionId == null){
-			alert("·Î±×ÀÎ ÈÄ¿¡ ÀÌ¿ëÇÒ ¼ö ÀÖ½À´Ï´Ù.");
-			location.href= "${pageContext.request.contextPath }/member/login";
-		} else {
-			location.href="${pageContext.request.contextPath }/board/writeForm";
-		}});
-	});
+   $(document).ready(function(){ //ë¡œê·¸ì¸ ë˜ì–´ìˆëŠ”ì§€ í™•ì¸í•˜ê¸°
+      $("#write").click(function(){
+         if(sessionId == '' || sessionId == null){
+         alert("ë¡œê·¸ì¸ í›„ì— ì´ìš©í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.");
+         location.href= "${pageContext.request.contextPath }/member/loginForm";
+      } else {
+         //ë¡œê·¸ì¸ ì•ˆë˜ì–´ìˆì„ì‹œ
+         location.href="${pageContext.request.contextPath }/board/writeForm";
+      }});
+   });
 </script>
 </head>
 <body>
-	<!-- °øÁö»çÇ×, ¹®ÀÇ»çÇ× ¸®½ºÆ® -->
-	<h3>°í°´¼¾ÅÍ</h3>
+	
+	<h3></h3>
 	<table border="1" cellspacing="0">
 		<thead>
 			<tr>
-				<th>¹øÈ£</th>
-				<th>Á¦¸ñ</th>
-				<th>ÀÛ¼ºÀÚ</th>
-				<th>µî·ÏÀÏ</th>
-			</tr>
+				<th>ì´ë¦„</th>
+				<th>ë©”ì´ì»¤</th>
+				<th>ê°€ê²©</th>
+				<th>ì›ì‚°ì§€</th>
+				<th>ì¬ë£Œ</th>
+				<th>ìˆ˜ëŸ‰</th>
+				</tr>
 		</thead>
 		<c:forEach var="b" items="${list}">
 			<tr>
-				<td><c:out value="${b.num}" /></td>
-				<td><c:out value="${b.title}" /></td>
-				<td><c:out value="${b.writer}" /></td>
-				<td><fmt:formatDate pattern="yyyy-MM-dd" value="${b.b_date}" /></td>
+				<td><c:out value="${p.num}" /></td>
+				<td><c:out value="${p.name}" /></td>
+				<td><c:out value="${p.price}" /></td>
+				<td><c:out value="${p.origin}" /></td>
+				<td><c:out value="${p.material}" /></td>
+				<td><c:out value="${p.quantty}" /></td>				
 			</tr>
 		</c:forEach>
 	</table>
-	¼¼¼Ç¾ÆÀÌµğ : <c:out value="${sessionScope.id}" />
-	<input type="button" id ="write" value="±Û¾²±â" onclick="write()">
+
+	ì„¸ì…˜ì•„ì´ë”” : <c:out value="${sessionScope.id}" />
+<input type="button" id ="write" value="ê¸€ì“°ê¸°">
+	
+	
+
 	
 </body>
 </html>
