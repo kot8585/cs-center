@@ -21,6 +21,7 @@ var sessionId = '<%=session.getAttribute("id") %>'
          location.href="${pageContext.request.contextPath }/board/writeForm";
       }});
    });
+
 </script>
 </head>
 <body>
@@ -29,31 +30,24 @@ var sessionId = '<%=session.getAttribute("id") %>'
 	<table border="1" cellspacing="0">
 		<thead>
 			<tr>
-				<th>이름</th>
-				<th>메이커</th>
-				<th>가격</th>
-				<th>원산지</th>
-				<th>재료</th>
-				<th>수량</th>
-				</tr>
+				<th>번호</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>등록일</th>
+			</tr>
 		</thead>
 		<c:forEach var="b" items="${list}">
 			<tr>
-				<td><c:out value="${p.num}" /></td>
-				<td><c:out value="${p.name}" /></td>
-				<td><c:out value="${p.price}" /></td>
-				<td><c:out value="${p.origin}" /></td>
-				<td><c:out value="${p.material}" /></td>
-				<td><c:out value="${p.quantty}" /></td>				
+
+				<td><c:out value="${b.num}" /></td>
+				<td><a href="${pageContext.request.contextPath }/board/detail?num=${b.num } ">${b.title} </a></td>
+				<td><c:out value="${b.writer}" /></td>
+				<td><fmt:formatDate pattern="yyyy-MM-dd" value="${b.b_date}" /></td>
 			</tr>
 		</c:forEach>
 	</table>
-
 	세션아이디 : <c:out value="${sessionScope.id}" />
-<input type="button" id ="write" value="글쓰기">
-	
-	
+	<input type="button" id ="write" value="글쓰기">
 
-	
 </body>
 </html>

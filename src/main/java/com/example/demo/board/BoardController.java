@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -53,18 +54,19 @@ public class BoardController {
 	}
 	
 	@PostMapping("/board/write")
-	public String write(HttpServletRequest req, Board b) {
+	public String write(Board b) {
 		System.out.println("/board/write");
 		int num = service.getNum();
 		b.setNum(num);
-		service.addBoard(b);
 		saveImg(num, b.getFile1());
 		saveImg(num, b.getFile2());
 		saveImg(num, b.getFile3());
+		service.addBoard(b);
 		return "redirect:/board/list";
 	}
 	
 	public void saveImg(int num, MultipartFile file) { //이미지 저장하기
+		System.out.println("BoardController.saveImg()");
 		String fileName = file.getOriginalFilename();
 		if(fileName != null && !fileName.equals("")) {
 			File dir = new File(basePath + num);
@@ -84,5 +86,20 @@ public class BoardController {
 		}
 	}
 	
-	
+	@RequestMapping("/board/detail")
+	public ModelAndView detail(@RequestParam int num) {
+		System.out.println("/board/detail");
+		ModelAndView mav = new ModelAndView("board/detail");
+		Board b = service.getBoardByNum(num);
+		String path = basePath + b.getNum() + "\\";
+		File imgDir = new File(path);
+		if(imgDir.exists()) {
+			String[] files  = imgDir.list();
+			for (int j = 0; j < files.length; j++) {
+				mav.addObject("file" + j, files[j]);
+			}
+		}
+		mav.addObject("b", b);
+		return mav;
+	}
 }
