@@ -31,7 +31,7 @@ public class BoardController {
 		for(int i=0; i<list.size(); i++) {
 			//해당 게시물의 댓글 가져오기
 			Board b = list.get(i);
-			ArrayList<Reply> reps = (ArrayList<Reply>) repService.getReplyByNum(b.getNum());
+			ArrayList<Reply> reps = (ArrayList<Reply>) repService.getReplyByBoardNum(b.getNum());
 			b.setReps(reps);
 		}
 		ModelAndView mav = new ModelAndView("board/list");

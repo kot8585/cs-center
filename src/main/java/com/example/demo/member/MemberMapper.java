@@ -13,6 +13,8 @@ public interface MemberMapper {
 	
 	void addMember(Member m);
 	
+	void delete(String id);
+	
 	Member getIdPwd(String email, String name);
 	
 }
