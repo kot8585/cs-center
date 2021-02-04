@@ -1,10 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="EUC-KR"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+   $(document).ready(function() {
+      $(".img").mouseover(function() {
+         $("#bigImg").attr('src', this.src);
+      });
+   });
+</script>
 </head>
 <body>
 <h3>상품 상제 정보</h3>
@@ -22,6 +31,27 @@
 <td><input type="text" name="name" value="${p.name }">
 </td>
 </tr>
+
+<tr>
+         <th>이미지</th>
+         <td><c:if test="${empty file0 }">
+               등록된 이미지가 없습니다.
+               </c:if> 
+               <c:if test="${not empty file0 }">
+               <table>
+                  <tr>
+                     <td colspan="3">
+                     <img id="bigImg" src="${pageContext.request.contextPath }/img?fname=${file0 }&num=${p.num }" 
+                     style="width:150px;height:150px"></td>
+                  </tr>
+                  <tr>
+                     <td><img src="${pageContext.request.contextPath }/img?fname=${file0 }&num=${p.num }" class="img" width="50" height="50"></td>
+                     <td><img src="${pageContext.request.contextPath }/img?fname=${file1 }&num=${p.num }" class="img" width="50" height="50"></td>
+                     <td><img src="${pageContext.request.contextPath }/img?fname=${file2 }&num=${p.num }" class="img" width="50" height="50"></td>
+               </table>
+            </c:if></td>
+      </tr>
+      
 
 <tr>
 <th>메이커</th>
@@ -60,6 +90,6 @@
 </tr>
 
 </table>
-
+<a href="${pageContext.request.contextPath }/review/reviewForm">리뷰 작성</a>
 </body>
 </html>
