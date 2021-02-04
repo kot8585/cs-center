@@ -138,9 +138,16 @@ public class BoardController {
 		service.delBoard(num);
 		
 		//이미지 삭제하기
-		String path = basePath + num +"\\"; 
+		String path = basePath + num+"\\"; 
 		File imgDir = new File(path);
 		
+		if (imgDir.exists()) {
+			String[] files = imgDir.list();
+			for (int j = 0; j < files.length; j++) {
+				File f = new File(path + files[j]);
+				f.delete();
+			}
+		}
 		imgDir.delete();
 		
 		return "redirect:/board/list";
