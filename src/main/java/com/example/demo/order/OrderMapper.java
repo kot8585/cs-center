@@ -8,5 +8,9 @@ import org.apache.ibatis.annotations.Mapper;
 public interface OrderMapper {
 
 	ArrayList<Order> getMyOrderListById(String id);
+
+	void insertOrder(Order o);
+
+	ArrayList<Order> getAllOrderList();
 	
 }

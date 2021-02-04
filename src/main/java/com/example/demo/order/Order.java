@@ -2,26 +2,62 @@ package com.example.demo.order;
 
 import java.sql.Date;
 
+import com.example.demo.member.Member;
+import com.example.demo.product.Product;
+
 public class Order {
 	private int num;
 	private String m_id;
 	private int p_num;
-	private int cost;
+	private int quantity;
 	private Date o_date;
+	private String address;
+	private String tel;
+	private int cost;
 	private int state;
+	private Product p = new Product();
+	private Member m = new Member();
 	
 	public Order() {
 		super();
 	}
 
-	public Order(int num, String m_id, int p_num, int cost, Date o_date, int state) {
+	public Order(int num, String m_id, int p_num, int quantity, Date o_date, int state) {
 		super();
 		this.num = num;
 		this.m_id = m_id;
 		this.p_num = p_num;
-		this.cost = cost;
+		this.quantity = quantity;
 		this.o_date = o_date;
 		this.state = state;
+	}
+
+	public Order(int num, String m_id, int p_num, int quantity, Date o_date, int state, Product p, Member m) {
+		super();
+		this.num = num;
+		this.m_id = m_id;
+		this.p_num = p_num;
+		this.quantity = quantity;
+		this.o_date = o_date;
+		this.state = state;
+		this.p = p;
+		this.m = m;
+	}
+	
+	public Order(int num, String m_id, int p_num, int quantity, Date o_date, String address, String tel, int cost, int state,
+			Product p, Member m) {
+		super();
+		this.num = num;
+		this.m_id = m_id;
+		this.p_num = p_num;
+		this.quantity = quantity;
+		this.o_date = o_date;
+		this.address = address;
+		this.tel = tel;
+		this.cost = cost;
+		this.state = state;
+		this.p = p;
+		this.m = m;
 	}
 
 	public int getNum() {
@@ -48,12 +84,14 @@ public class Order {
 		this.p_num = p_num;
 	}
 
-	public int getCost() {
-		return cost;
+	
+
+	public int getQuantity() {
+		return quantity;
 	}
 
-	public void setCost(int cost) {
-		this.cost = cost;
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
 	public Date getO_date() {
@@ -64,6 +102,32 @@ public class Order {
 		this.o_date = o_date;
 	}
 
+	
+	
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+	
+	public int getCost() {
+		return cost;
+	}
+
+	public void setCost(int cost) {
+		this.cost = cost;
+	}
+
 	public int getState() {
 		return state;
 	}
@@ -72,12 +136,27 @@ public class Order {
 		this.state = state;
 	}
 
-	@Override
-	public String toString() {
-		return "Order [num=" + num + ", m_id=" + m_id + ", p_num=" + p_num + ", cost=" + cost + ", o_date=" + o_date
-				+ ", state=" + state + "]";
+	public Product getP() {
+		return p;
 	}
 
-	
-	
+	public void setP(Product p) {
+		this.p = p;
+	}
+
+	public Member getM() {
+		return m;
+	}
+
+	public void setM(Member m) {
+		this.m = m;
+	}
+
+	@Override
+	public String toString() {
+		return "Order [num=" + num + ", m_id=" + m_id + ", p_num=" + p_num + ", quantity=" + quantity + ", o_date="
+				+ o_date + ", address=" + address + ", tel=" + tel + ", cost=" + cost + ", state=" + state + ", p=" + p
+				+ ", m=" + m + "]";
+	}
+
 }
