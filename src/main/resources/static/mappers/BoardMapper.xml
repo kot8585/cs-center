@@ -34,7 +34,7 @@
 	</delete>
 	
 	<update id="update" parameterType="com.example.demo.board.Board">
-		update member set password=#{password}, title=#{title}, content=#{content},email=#{email} where id=#{id}
+		update board set pwd=#{pwd}, title=#{title}, content=#{content} where num=#{num}
 	</update>
 	
 	<select id="getMyQuestionListById" parameterType="String" resultMap="board">

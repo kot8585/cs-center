@@ -16,21 +16,34 @@ public class Board {
 	private Date b_date;
 	private String path;
 	private ArrayList<Reply> reps;
-	MultipartFile file1;
-	MultipartFile file2;
-	MultipartFile file3;
+	private MultipartFile file1;
+	private MultipartFile file2;
+	private MultipartFile file3;
 	
 	
 
 	public Board() {
 		super();
 	}
+	
+	
+	public Board(int num, String pwd, String writer, String title, String content, Date b_date, String path) {
+		super();
+		this.num = num;
+		this.pwd = pwd;
+		this.writer = writer;
+		this.title = title;
+		this.content = content;
+		this.b_date = b_date;
+		this.path = path;
+	}
 
-	public Board(int num, String password, String writer, String title, String content, Date b_date, String path,
+
+	public Board(int num, String pwd, String writer, String title, String content, Date b_date, String path,
 			ArrayList<Reply> reps, MultipartFile file1, MultipartFile file2, MultipartFile file3) {
 		super();
 		this.num = num;
-		this.pwd = password;
+		this.pwd = pwd;
 		this.writer = writer;
 		this.title = title;
 		this.content = content;

@@ -58,7 +58,7 @@ public class MemberController {
 			HttpSession session = req.getSession();
 			session.setAttribute("id", m2.getId());
 	
-			return "/mypage/mypage";
+			return "/member/main";
 		}
 	}
 	@RequestMapping("/member/findForm")
