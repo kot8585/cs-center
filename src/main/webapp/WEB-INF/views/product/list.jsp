@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.min.js">
    
@@ -13,18 +13,18 @@
 </head>
 <body>
 
-   <h3>»óÇ°¸®½ºÆ®</h3>
+   <h3>ìƒí’ˆë¦¬ìŠ¤íŠ¸</h3>
    <table border="1" cellspacing="0">
       <thead>
          <tr>
-            <th>¹øÈ£</th>
-            <th>ÀÌ¹ÌÁö</th>
-            <th>ÀÌ¸§</th>
-            <th>¸ÞÀÌÄ¿</th>
-            <th>°¡°Ý</th>
-            <th>¿ø»êÁö</th>
-            <th>Àç·á</th>
-            <th>¼ö·®</th>
+            <th>ë²ˆí˜¸</th>
+            <th>ì´ë¯¸ì§€</th>
+            <th>ì´ë¦„</th>
+            <th>ë©”ì´ì»¤</th>
+            <th>ê°€ê²©</th>
+            <th>ì›ì‚°ì§€</th>
+            <th>ìž¬ë£Œ</th>
+            <th>ìˆ˜ëŸ‰</th>
          </tr>
       </thead>
       <c:forEach var="p" items="${list}">

@@ -1,30 +1,30 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 <form action="${pageContext.request.contextPath }/review/write">
 <table border="300">
 <tr>
-<td>Á¦¸ñ<td>
+<td>ì œëª©<td>
 <td><input type="text" name="title"><td>
 </tr>
 <tr>
-<td>ÀÛ¼ºÀÚ<td>
+<td>ì‘ì„±ì<td>
 <td><input type="text" name="writer"><td>
 </tr>
 <tr>
-<td>³»¿ë<td>
+<td>ë‚´ìš©<td>
 <td><textarea name="content" cols="50" rows="50"></textarea><td>
 </tr>
 <tr>
 <td colspan="2">
-<input type="submit" value="ÀÛ¼º">
-<input type="reset" value="Áö¿ì±â">
+<input type="submit" value="ì‘ì„±">
+<input type="reset" value="ì§€ìš°ê¸°">
 <input type="hidden" name="pnum" value="2">
 </td>
 </tr>
