@@ -18,4 +18,5 @@ public interface RepMapper {
 
 	void delete(int num); //해당 댓글만 지우기
 	
+	List selectAll();
 }

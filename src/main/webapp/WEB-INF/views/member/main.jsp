@@ -1,17 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-<a href="${ pageContext.request.contextPath }/member/loginForm">·Î±×ÀÎ</a>
-<a href="${ pageContext.request.contextPath }/member/joinForm">È¸¿ø°¡ÀÔ</a>
-<a href="${ pageContext.request.contextPath }/mypage/mypage">¸¶ÀÌÆäÀÌÁö</a>
-<a href="${ pageContext.request.contextPath }/board/list">°í°´¼¾ÅÍ</a>
+
+<a href="${ pageContext.request.contextPath }/member/loginForm">ë¡œê·¸ì¸</a>
+<a href="${ pageContext.request.contextPath }/member/joinForm">íšŒì›ê°€ìž…</a>
+<a href="${ pageContext.request.contextPath }/mypage/mypage">ë§ˆì´íŽ˜ì´ì§€</a>
+<a href="${ pageContext.request.contextPath }/board/list">ê³ ê°ì„¼í„°</a>
 
 <c:import url="${ pageContext.request.contextPath }/product/list"></c:import>
 </body>

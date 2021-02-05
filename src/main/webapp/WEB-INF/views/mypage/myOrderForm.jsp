@@ -1,20 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 <c:if test="${empty list }">
- µî·ÏµÈ »óÇ°ÀÌ ¾ø´Ù. 
+ ë“±ë¡ëœ ìƒí’ˆì´ ì—†ë‹¤. 
 </c:if>
 <c:if test="${not empty list }">
 <table border="1">
-<tr><th>num</th><th>m_idID</th><th>p_num</th><th>quantity</th><th>address</th><th>tel</th><th>o_date</th><th>cost</th><th>state</th><th>¸®ºäÀÛ¼º</th>
+
+<tr><th>ì£¼ë¬¸ë²ˆí˜¸</th><th>ì£¼ë¬¸ìID</th><th>ì œí’ˆë²ˆí˜¸</th><th>ê°€ê²©</th><th>ë‚ ì§œ</th><th>ë°°ì†¡ìƒíƒœ</th>
+
 <c:forEach var="p" items="${list }">
 <tr>
 	<td>${ p.num }</td>
@@ -26,7 +28,7 @@
 	<td>${ p.o_date }</td>
 	<td>${ p.cost }</td>
 	<td>${ p.state }</td>
-	<td><input type="button" value="¸®ºäÀÛ¼º"></td>
+	<td><input type="button" value="ë¦¬ë·°ì‘ì„±"></td>
 </tr>
 </c:forEach>
 </table>

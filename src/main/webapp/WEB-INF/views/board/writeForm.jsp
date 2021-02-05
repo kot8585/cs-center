@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
@@ -11,30 +11,30 @@
 	<form action="${pageContext.request.contextPath }/board/write" method="post"  enctype="multipart/form-data">
 		<table border="1">
 			<tr>
-				<th>ÀÛ¼ºÀÚ</th><td><input type="text" name="writer" value="${sessionScope.id }"></td>
+				<th>ìž‘ì„±ìž</th><td><input type="text" name="writer" value="${sessionScope.id }"></td>
 			</tr>
 			<tr>
-				<th>Á¦¸ñ</th><td><input type="text" name="title"></td>
+				<th>ì œëª©</th><td><input type="text" name="title"></td>
 			</tr>
 			<tr>
-				<th>ºñ¹Ð¹øÈ£</th><td><input type="password" name="pwd" ></td>
+				<th>ë¹„ë°€ë²ˆí˜¸</th><td><input type="password" name="pwd" ></td>
 			</tr>
 			
 			<tr>
-				<th>³»¿ë</th><td><textarea name="content" rows="10" cols="33" ></textarea></td>
+				<th>ë‚´ìš©</th><td><textarea name="content" rows="10" cols="33" ></textarea></td>
 			</tr>
 
 			<tr>
-				<th>ÆÄÀÏÃ·ºÎ1</th><td><input type="file" name="file1"></td>
+				<th>íŒŒì¼ì²¨ë¶€1</th><td><input type="file" name="file1"></td>
 			</tr>
 			<tr>
-				<th>ÆÄÀÏÃ·ºÎ2</th><td><input type="file" name="file2"></td>
+				<th>íŒŒì¼ì²¨ë¶€2</th><td><input type="file" name="file2"></td>
 			</tr>
 			<tr>
-				<th>ÆÄÀÏÃ·ºÎ3</th><td><input type="file" name="file3"></td>
+				<th>íŒŒì¼ì²¨ë¶€3</th><td><input type="file" name="file3"></td>
 			</tr>
-			<tr><td><input type="reset" value="Ãë¼Ò">	</td>
-			<td><input type="submit" value="µî·Ï"></td></tr>
+			<tr><td><input type="reset" value="ì·¨ì†Œ">	</td>
+			<td><input type="submit" value="ë“±ë¡"></td></tr>
 		</table>
 		<input type="hidden" name="path" value="123"> 
 	</form>

@@ -1,115 +1,122 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="EUC-KR"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
+
+<title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-// ¼öÁ¤ »èÁ¦ÀÇ °æ¿ì admin ÆäÀÌÁö¿¡¼­ ³Ñ¾î°¡µµ·Ï.
-$(document).ready(function() {
-	$(".img").mouseover(function() {
-		$("#bigImg").attr('src', this.src);
-	});
-	
-	$("#cart").click(function() {
-		var m_id = $("#m_id").val();
-		var p_num = $("#p_num").val();
-		var cost = $("#cost").val();
-		alert(m_id + " + " + p_num + " + " + cost);
-		$.post("/cart/addCart", { m_id: m_id, p_num: p_num, cost: cost })
-		.done(function(data) {
-			// Áßº¹ ºÒ°¡´ÉÇÏ°Ô ÇÏ´Â°Ç ´ÙÀ½¹ø¿¡ ÀâÀÚ.
-			alert("Àå¹Ù±¸´Ï¿¡ Ãß°¡µÇ¾ú½À´Ï´Ù!");
-		});
-	});
-	
-});	
+   $(document).ready(function() {
+      $(".img").mouseover(function() {
+         $("#bigImg").attr('src', this.src);
+      });
+   });
 </script>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
 </head>
 <body>
 
-<h5>¼¼¼Ç id : ${ sessionScope.id }</h5>
-<h3>»óÇ° »ó¼¼ Á¤º¸</h3>
-<form action="${ pageContext.request.contextPath }/order/orderForm" method="post">
+<h3>ìƒí’ˆ ìƒì œ ì •ë³´</h3>
+
+
+
+
+
 <table border="1" cellspacing="0">
 <tr>
-<th>¹øÈ£</th>
-<td><input type="text" name="p_num" id="p_num" value="${p.num }" readonly="readonly">
+
+<th>ë²ˆí˜¸</th>
+<td><input type="text" name="num" value="${p.num }">
+
 </td>
 </tr>
-<tr>
-	<th>»óÇ°ÀÌ¹ÌÁö</th>
-	<td><c:if test="${empty file0 }">
-					µî·ÏµÈ ÀÌ¹ÌÁö°¡ ¾ø½À´Ï´Ù.
-					</c:if> 
-					<c:if test="${not empty file0 }">
-					<table>
-						<tr>
-							<td colspan="3">
-							<img id="bigImg" src="${pageContext.request.contextPath }/product/img?fname=${file0 }&num=${p.num }" 
-							style="width:150px;height:150px"></td>
-						</tr>
-						<tr>
-							<td><img src="${pageContext.request.contextPath }/product/img?fname=${file0 }&num=${p.num }" class="img" width="50" height="50"></td>
-							<td><img src="${pageContext.request.contextPath }/product/img?fname=${file1 }&num=${p.num }" class="img" width="50" height="50"></td>
-							<td><img src="${pageContext.request.contextPath }/product/img?fname=${file2 }&num=${p.num }" class="img" width="50" height="50"></td>
-					</table>
-				</c:if></td>
-<tr>
+
 
 <tr>
-<th>»óÇ°¸í</th>
-<td><input type="text" value="${p.name }" readonly="readonly">
+
+<th>ìƒí’ˆëª…</th>
+<td><input type="text" name="name" value="${p.name }">
+
 </td>
 </tr>
 
 <tr>
-<th>¸ŞÀÌÄ¿</th>
-<td><input type="text" value="${p.maker }" readonly="readonly">
+
+
+         <th>ì´ë¯¸ì§€</th>
+         <td><c:if test="${empty file0 }">
+               ë“±ë¡ëœ ì´ë¯¸ì§€ê°€ ì—†ìŠµë‹ˆë‹¤.
+               </c:if> 
+               <c:if test="${not empty file0 }">
+               <table>
+                  <tr>
+                     <td colspan="3">
+                     <img id="bigImg" src="${pageContext.request.contextPath }/img?fname=${file0 }&num=${p.num }" 
+                     style="width:150px;height:150px"></td>
+                  </tr>
+                  <tr>
+                     <td><img src="${pageContext.request.contextPath }/img?fname=${file0 }&num=${p.num }" class="img" width="50" height="50"></td>
+                     <td><img src="${pageContext.request.contextPath }/img?fname=${file1 }&num=${p.num }" class="img" width="50" height="50"></td>
+                     <td><img src="${pageContext.request.contextPath }/img?fname=${file2 }&num=${p.num }" class="img" width="50" height="50"></td>
+               </table>
+            </c:if></td>
+      </tr>
+      
+
+<tr>
+<th>ë©”ì´ì»¤</th>
+<td><input type="text" name="maker" value="${p.maker }">
+
 </td>
 </tr>
 
 <tr>
-<th>°¡°İ</th>
-<td><input type="text" id="cost" value="${p.price }" readonly="readonly">
+
+<th>ê°€ê²©</th>
+<td><input type="text" name="price" value="${p.price }">
+
 </td>
 </tr>
 
 <tr>
-<th>¿ø»êÁö</th>
-<td><input type="text" value="${p.origin }" readonly="readonly">
+
+<th>ì›ì‚°ì§€</th>
+<td><input type="text" name="origin" value="${p.origin }">
+
 </td>
 </tr>
 
 <tr>
-<th>Àç·á</th>
-<td><input type="text" value="${p.material }" readonly="readonly">
+
+<th>ì¬ë£Œ</th>
+<td><input type="text" name="material" value="${p.material }">
+
 </td>
 </tr>
 
 <tr>
-<th>³²´Â¼ö·®</th>
-<td><input type="text" value="${p.quantity }" readonly="readonly"></td>
+
+<th>ìˆ˜ëŸ‰</th>
+<td><input type="text" name="quantity" value="${p.quantity }"></td>
+
 </tr>
 
-<tr>
-<th>ÁÖ¹®¼ö·®</th>
-<td><input type="text" name="quantity"></td>
-</tr>
+
 
 
 
 <tr>
 <td colspan="2">
-	<input type="hidden" name="m_id" id="m_id" value="${ sessionScope.id }"><input type="submit" value="±¸¸Å">
-	<input type="button" value="Àå¹Ù±¸´Ï·Î" id="cart">
+
+<input type="submit" value="ìˆ˜ì •">
+<input type="button" value="ì‚­ì œ" id="del">
+
 </td>
 </tr>
 </table>
 
-</form>
+<a href="${pageContext.request.contextPath }/review/reviewForm">ë¦¬ë·° ì‘ì„±</a>
+
 </body>
 </html>
