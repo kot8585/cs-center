@@ -1,6 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -13,7 +15,7 @@
 	$(document).ready(function(){
 
 		$("#edit").click(function(){
-			var result = confirm("±ÛÀ» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?");
+			var result = confirm("ê¸€ì„ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?");
 			if(result){
 				location.href = "${pageContext.request.contextPath}/board/del?num=${b.num}";
 			}
@@ -30,9 +32,9 @@
 				var items = eval("(" + data + ")");
 				//var items = eval( data );
 				//for(i=0;i<items.length;i++){
-		    	//	str+=items[i].content+"(ÀÛ¼ºÀÚ:"+items[i].writer+")<br>";
+		    	//	str+=items[i].content+"(ì‘ì„±ì:"+items[i].writer+")<br>";
 		    	//}
-				str+=items.content+"(ÀÛ¼ºÀÚ:"+items.writer+")<br>";
+				str+=items.content+"(ì‘ì„±ì:"+items.writer+")<br>";
 
 		    	$("#reply").html(str);
 			});
@@ -49,26 +51,26 @@
 		<table border="1" cellspacing="0">
 		
 			<tr>
-				<td>ÀÛ¼ºÀÚ</td>
+				<td>ì‘ì„±ì</td>
 				<td><input type="text" name="writer" value="${b.writer}"></td>
 			</tr>
 			<tr>
-				<td>Á¦¸ñ</td>
+				<td>ì œëª©</td>
 				<td><input type="text" name="title" value="${b.title}" ${data}></td>
 			</tr>
 			<tr>
-				<td>³»¿ë</td>
+				<td>ë‚´ìš©</td>
 				<td><input type="text" name="content" value="${b.content}" ${data}></td>
 			</tr>
 			<tr>
-				<td>ÀÛ¼º³¯Â¥</td>
+				<td>ì‘ì„±ë‚ ì§œ</td>
 				<td><input type="text" name="b_date" value="${b.b_date}"></td>
 			
 			</tr>
 			<table border="1">
 			<c:if test="${not empty file0 }">
 				<tr>
-					<td>ÀÌ¹ÌÁö</td>
+					<td>ì´ë¯¸ì§€</td>
 					<td><img src="${pageContext.request.contextPath }/board/img?fname=${file0}&num=${b.num}" class="img" width="50" height="50"></td>
 					<td><img src="${pageContext.request.contextPath }/board/img?fname=${file1}&num=${b.num}" class="img" width="50" height="50"></td>
 					<td><img src="${pageContext.request.contextPath }/board/img?fname=${file2}&num=${b.num}" class="img" width="50" height="50"></td>
@@ -79,40 +81,40 @@
 			<input type="hidden" name="num" value="${b.num}">
 			<input type="hidden" name="pwd" value="${b.pwd}">
 			
-			<!-- ÀÛ¼ºÀÚ¸¸ ¼öÁ¤, »èÁ¦ ¹öÆ° ¶ß°Ô ÇÏ±â -->
+			<!-- ì‘ì„±ìë§Œ ìˆ˜ì •, ì‚­ì œ ë²„íŠ¼ ëœ¨ê²Œ í•˜ê¸° -->
 			<c:if test="${sessionScope.id eq b.writer}">
-				<input type="submit" value="¼öÁ¤ÇÏ±â">
-				<input type="button" value="»èÁ¦ÇÏ±â" id="edit">
+				<input type="submit" value="ìˆ˜ì •í•˜ê¸°">
+				<input type="button" value="ì‚­ì œí•˜ê¸°" id="edit">
 			</c:if>
 			
-			<!-- °ü¸®ÀÚ´Â »èÁ¦¹öÆ°¸¸ ¶ß°Ô ÇÏ±â -->
+			<!-- ê´€ë¦¬ìëŠ” ì‚­ì œë²„íŠ¼ë§Œ ëœ¨ê²Œ í•˜ê¸° -->
 			<c:if test="${sessionScope.id eq 'admin'}">
-				<input type="button" value="»èÁ¦ÇÏ±â" id="edit">
+				<input type="button" value="ì‚­ì œí•˜ê¸°" id="edit">
 			</c:if>
 	</form>
-	<!-- °ü¸®ÀÚ ÆäÀÌÁöÀÏ°æ¿ì¿¡¸¸ ¶ä -->	
+	<!-- ê´€ë¦¬ì í˜ì´ì§€ì¼ê²½ìš°ì—ë§Œ ëœ¸ -->	
 	<form action="" method="post">
 		<table border="1">
 			<tr>
-				<td>ÀÛ¼ºÀÚ : <input type="text" id="rep_title"></td>
+				<td>ì‘ì„±ì : <input type="text" id="rep_title"></td>
 			</tr>
 			<tr>
-				<td>³»¿ë : <textarea id="rep_content"></textarea></td>
+				<td>ë‚´ìš© : <textarea id="rep_content"></textarea></td>
 			</tr>
 			<tr>
-				<td><input type="button" id="repWrite" value="ÀÛ¼º" ></td>
+				<td><input type="button" id="repWrite" value="ì‘ì„±" ></td>
 			</tr>
 		</table>
 	</form>
 	
-	<!-- ´ñ±Û ÀÛ¼ºµÇ¸é ÀÌ ¿µ¿ª¿¡ ³Ö´Â´Ù -->
+	<!-- ëŒ“ê¸€ ì‘ì„±ë˜ë©´ ì´ ì˜ì—­ì— ë„£ëŠ”ë‹¤ -->
 	<div id="reply"></div>
 	
-	<!-- ´ñ±Û°æ¿ì Ãâ·ÂÇÏ±â -->
+	<!-- ëŒ“ê¸€ê²½ìš° ì¶œë ¥í•˜ê¸° -->
 		<table border="1">
 	<c:forEach var="r" items="${b.reps }">
-			<tr><td>ÀÛ¼ºÀÚ: <input type="text" value="${r.writer}"></td></tr>
-			<tr><td>³»¿ë : <textarea rows="5" cols="40">${r.content}</textarea></td></tr>
+			<tr><td>ì‘ì„±ì: <input type="text" value="${r.writer}"></td></tr>
+			<tr><td>ë‚´ìš© : <textarea rows="5" cols="40">${r.content}</textarea></td></tr>
 	</c:forEach>
 		</table>
 </body>

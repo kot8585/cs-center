@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>ID/PWD Ã£±â Page</title>
+<meta charset="UTF-8">
+<title>ID/PWD ì°¾ê¸° Page</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 $(document).ready(function(){
@@ -13,19 +13,16 @@ $(document).ready(function(){
 		$.post("/member/find", {email: $("#email").val(), name: $("#name").val()})
 		.done(function(data){
 			$("#findId").text(data);
-			$("#findPwd").text(data);
+			
 		})
-		
-	
-		
 	})
 })
 	
 </script>
 </head>
 <body>
-<h3>ID/PWD Ã£±â</h3>
-<p>È¸¿ø°¡ÀÔ ½Ã ÀÔ·ÂÇÑ E-mailÁÖ¼Ò¿Í ÀÌ¸§À» ÀÔ·ÂÇØÁÖ¼¼¿ä.
+<h3>ID/PWD ì°¾ê¸°</h3>
+<p>íšŒì›ê°€ì… ì‹œ ì…ë ¥í•œ E-mailì£¼ì†Œì™€ ì´ë¦„ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.
 <form>
 	<table border="1">
 		<tr>
@@ -41,8 +38,6 @@ $(document).ready(function(){
 		</tr>
 	</table>
 </form>
-
-È¸¿ø´ÔÀÇ ¾ÆÀÌµğ´Â <div id="findId"></div> ÀÔ´Ï´Ù.<br>
-È¸¿ø´ÔÀÇ ºñ¹Ğ¹øÈ£´Â <div id="findPwd"></div> ÀÔ´Ï´Ù.
+<div id="findId"></div>
 </body>
 </html>

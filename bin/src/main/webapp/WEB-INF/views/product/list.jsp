@@ -1,46 +1,50 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.min.js">
-	$(document).ready(function(){ //·Î±×ÀÎ µÇ¾îÀÖ´ÂÁö È®ÀÎÇÏ±â
-		founction writeForm(sessionScope.id == '' || sessionScope.id == null){
-			alert("·Î±×ÀÎ ÈÄ¿¡ ÀÌ¿ëÇÒ ¼ö ÀÖ½À´Ï´Ù.");
-			location.href= "${pageContext.request.contextPath }/member/login";
-		} else {
-			location.href="${pageContext.request.contextPath }/board/writeForm";
-		}
-		
-	});
+   
 </script>
 </head>
 <body>
 
-	<h3>°í°´¼¾ÅÍ</h3>
-	<table border="1" cellspacing="0">
-		<thead>
-			<tr>
-				<th>¹øÈ£</th>
-				<th>Á¦¸ñ</th>
-				<th>ÀÛ¼ºÀÚ</th>
-				<th>µî·ÏÀÏ</th>
-			</tr>
-		</thead>
-		<c:forEach var="b" items="${list}">
-			<tr>
-				<td><c:out value="${b.num}" /></td>
-				<td><c:out value="${b.title}" /></td>
-				<td><c:out value="${b.writer}" /></td>				
-			</tr>
-		</c:forEach>
-	</table>
-	
-	<a href="javascript:writeForm('${sessionScope.id }')">±Û¾²±â</a>
-	
+
+   <h3>ìƒí’ˆë¦¬ìŠ¤íŠ¸</h3>
+   <table border="1" cellspacing="0">
+      <thead>
+         <tr>
+            <th>ë²ˆí˜¸</th>
+            <th>ì´ë¯¸ì§€</th>
+            <th>ì´ë¦„</th>
+            <th>ë©”ì´ì»¤</th>
+            <th>ê°€ê²©</th>
+            <th>ì›ì‚°ì§€</th>
+            <th>ì¬ë£Œ</th>
+            <th>ìˆ˜ëŸ‰</th>
+
+         </tr>
+      </thead>
+      <c:forEach var="p" items="${list}">
+         <tr>
+            <td>${p.num}</td>
+
+            <td><img id="bigImg" src="${pageContext.request.contextPath }/img?fname=${file0 }&num=${p.num}" style="width:60px;height:60px"></td>
+
+            <td><a href="${pageContext.request.contextPath }/product/detail?num=${p.num}">${p.name}</a></td>
+            <td>${p.maker}</td>
+            <td>${p.price}</td>
+            <td>${p.origin}</td>
+            <td>${p.material}</td>
+            <td>${p.quantity}</td>            
+         </tr>
+      </c:forEach>
+   </table>
+
 </body>
 </html>
+

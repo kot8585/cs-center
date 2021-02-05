@@ -12,9 +12,6 @@
 	<result column="material" property="material" />
 	<result column="imgPath" property="imgPath" />
 	
-	<result column="location_x" property="location_x" />
-	<result column="location_y" property="location_y" />
-	<result column="location_z" property="location_z" />
 	<result column="event_num" property="event_num" />
 	
 </resultMap>

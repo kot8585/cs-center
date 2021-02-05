@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
 function go() {
@@ -11,11 +11,11 @@ function go() {
 	var password = document.getElementById("password");
 	
 	if(id.value == ""){
-		alert("¾ÆÀÌµğ ¶Ç´Â ºñ¹Ğ¹øÈ£°¡0 ¾×¼Çºö")
+		alert("ì•„ì´ë”” ë˜ëŠ” ë¹„ë°€ë²ˆí˜¸ê°€0 ì•¡ì…˜ë¹”")
 		return
 	}
 	if(password.value == ""){
-		alert("¾ÆÀÌµğ ¶Ç´Â ºñ¹Ğ¹øÈ£°¡ ¾×¼Çºö")
+		alert("ì•„ì´ë”” ë˜ëŠ” ë¹„ë°€ë²ˆí˜¸ê°€ ì•¡ì…˜ë¹”")
 	}else{
 		f.submit()
 	}
@@ -34,10 +34,10 @@ function go() {
 			<td><input type="password" name="password" id="password"></td>
 		</tr>
 		<tr>
-			<td colspan="2"><input type="button" value="·Î±×ÀÎ" onclick="go()" id="passwordCheck" ></td>
+			<td colspan="2"><input type="button" value="ë¡œê·¸ì¸" onclick="go()" id="passwordCheck" ></td>
 		</tr>
 	</table>
 </form>
-<a href="${pageContext.request.contextPath }/member/findForm">ID/PWD Ã£±â</a>
+<a href="${pageContext.request.contextPath }/member/findForm">ID/PWD ì°¾ê¸°</a>
 </body>
 </html>

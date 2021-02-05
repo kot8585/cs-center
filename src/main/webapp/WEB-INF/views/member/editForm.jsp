@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
@@ -28,8 +28,8 @@
 <tr>
 <td>GENDER</td>
 <td colspan="2">
-<input type="radio" name="gender" value="m">³²ÀÚ
-<input type="radio" name="gender" value="f">¿©ÀÚ</td>
+<input type="radio" name="gender" value="m">ë‚¨ì
+<input type="radio" name="gender" value="f">ì—¬ì</td>
 </tr>
 <tr>
 <td>ADDRESS</td>
@@ -44,8 +44,8 @@
 <td><input type="text" name="email" value="${m.email }"></td>
 </tr>
 <tr>
-<td colspan=""><input type="submit" value="¼öÁ¤">
-<input type="reset" type="ÀçÀÔ·Â"></td>
+<td colspan=""><input type="submit" value="ìˆ˜ì •">
+<input type="reset" type="ì¬ì…ë ¥"></td>
 </tr>
 </table>
 </form>

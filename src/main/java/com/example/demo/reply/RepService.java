@@ -32,4 +32,10 @@ public class RepService {
 	public void delReply(int num) {
 		mapper.delete(num);
 	}
+	
+	public void getAllReply() {
+		mapper.selectAll();
+		
+		
+	}
 }

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-¾ÆÀÌµğ : ${m.id }
-ºñ¹Ğ¹øÈ£ : ${m.password }
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+ì•„ì´ë”” : ${m.id }
+ë¹„ë°€ë²ˆí˜¸ : ${m.password }

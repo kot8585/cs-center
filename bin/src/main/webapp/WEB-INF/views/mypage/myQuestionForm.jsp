@@ -1,21 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 <%  %>
 <c:if test="${empty list }">
- µî·ÏµÈ »óÇ°ÀÌ ¾ø´Ù. 
+ ë“±ë¡ëœ ìƒí’ˆì´ ì—†ë‹¤. 
 </c:if>
 <c:if test="${not empty list }">
 <table>
-<tr><th>num</th><th>pwd</th><th>writer</th><th>title</th><th>content</th><th>path</th><th>´äº¯º¸±â</th>
+<tr><th>num</th><th>pwd</th><th>writer</th><th>title</th><th>content</th><th>path</th><th>ë‹µë³€ë³´ê¸°</th>
 <c:forEach var="p" items="${list }">
 <tr>
 	<td>${ p.num }</td>
@@ -24,9 +24,9 @@
 	<td><a href="${ pageContext.request.contextPath }/board/detail?num=${ p.num }">${ p.title }</a></td>
 	<td>${ p.content }</td>
 	<td>${ p.path }</td>
-	<td><input type="button" value="´äº¯º¸±â"></td>
+	<td><input type="button" value="ë‹µë³€ë³´ê¸°"></td>
 </tr>
-<!-- ÃßÈÄ ¾Æ·¡¿¡ tdÀ» »ı¼ºÇÏ¿© ¹®ÀÇ´äº¯À» ¹Ù·Î È®ÀÎÇÏµµ·Ï ¸¸µê -->
+<!-- ì¶”í›„ ì•„ë˜ì— tdì„ ìƒì„±í•˜ì—¬ ë¬¸ì˜ë‹µë³€ì„ ë°”ë¡œ í™•ì¸í•˜ë„ë¡ ë§Œë“¦ -->
 </c:forEach>
 </table>
 </c:if>

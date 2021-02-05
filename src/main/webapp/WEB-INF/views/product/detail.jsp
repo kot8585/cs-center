@@ -1,65 +1,111 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
+
 <title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+   $(document).ready(function() {
+      $(".img").mouseover(function() {
+         $("#bigImg").attr('src', this.src);
+      });
+      
+      $("#cart").click(function() {
+  		var m_id = $("#m_id").val();
+  		var p_num = $("#p_num").val();
+  		var cost = $("#cost").val();
+  		alert(m_id + " + " + p_num + " + " + cost);
+  		$.post("/cart/addCart", { m_id: m_id, p_num: p_num, cost: cost })
+  		.done(function(data) {
+  			// ì¤‘ë³µ ë¶ˆê°€ëŠ¥í•˜ê²Œ í•˜ëŠ”ê±´ ë‹¤ìŒë²ˆì— ì¡ì.
+  			alert("ì¥ë°”êµ¬ë‹ˆì— ì¶”ê°€ë˜ì—ˆìŠµë‹ˆë‹¤!");
+  		});
+  	});
+});
+</script>
 </head>
 <body>
-<h3>»óÇ° »óÁ¦ Á¤º¸</h3>
-
-
+<h5>ì„¸ì…˜ id : ${ sessionScope.id }</h5>
+<h3>ìƒí’ˆ ìƒì œ ì •ë³´</h3>
+<form action="${ pageContext.request.contextPath }/order/orderForm" method="post">
 <table border="1" cellspacing="0">
 <tr>
-<th>¹øÈ£</th>
-<td><input type="text" name="num" value="${p.num }">
+
+<th>ë²ˆí˜¸</th>
+<td><input type="text" name="p_num" id="p_num" value="${p.num }" readonly></td>
+</tr>
+
+
+<tr>
+
+<th>ìƒí’ˆëª…</th>
+<td><input type="text" name="name" value="${p.name }" readonly>
+
 </td>
 </tr>
 
 <tr>
-<th>»óÇ°¸í</th>
-<td><input type="text" name="name" value="${p.name }">
-</td>
+         <th>ì´ë¯¸ì§€</th>
+         <td><c:if test="${empty file0 }">
+               ë“±ë¡ëœ ì´ë¯¸ì§€ê°€ ì—†ìŠµë‹ˆë‹¤.
+               </c:if> 
+               <c:if test="${not empty file0 }">
+               <table>
+                  <tr>
+                     <td colspan="3">
+                     <img id="bigImg" src="${pageContext.request.contextPath }/img?fname=${file0 }&num=${p.num }" 
+                     style="width:150px;height:150px"></td>
+                  </tr>
+                  <tr>
+                     <td><img src="${pageContext.request.contextPath }/img?fname=${file0 }&num=${p.num }" class="img" width="50" height="50"></td>
+                     <td><img src="${pageContext.request.contextPath }/img?fname=${file1 }&num=${p.num }" class="img" width="50" height="50"></td>
+                     <td><img src="${pageContext.request.contextPath }/img?fname=${file2 }&num=${p.num }" class="img" width="50" height="50"></td>
+               </table>
+            </c:if></td>
+      </tr>
+<tr>
+<th>ë©”ì´ì»¤</th>
+<td><input type="text" name="maker" value="${p.maker }" readonly></td>
 </tr>
 
 <tr>
-<th>¸ŞÀÌÄ¿</th>
-<td><input type="text" name="maker" value="${p.maker }">
-</td>
+<th>ê°€ê²©</th>
+<td><input type="text" name="price" id="cost"  value="${p.price }" readonly></td>
 </tr>
 
 <tr>
-<th>°¡°İ</th>
-<td><input type="text" name="price" value="${p.price }">
-</td>
+<th>ì›ì‚°ì§€</th>
+<td><input type="text" name="origin" value="${p.origin }" readonly></td>
 </tr>
 
 <tr>
-<th>¿ø»êÁö</th>
-<td><input type="text" name="origin" value="${p.origin }">
-</td>
+<th>ì¬ë£Œ</th>
+<td><input type="text" name="material" value="${p.material }" readonly></td>
 </tr>
 
 <tr>
-<th>Àç·á</th>
-<td><input type="text" name="material" value="${p.material }">
-</td>
+<th>ë‚¨ëŠ”ìˆ˜ëŸ‰</th>
+<td><input type="text" value="${p.quantity }" readonly="readonly"></td>
 </tr>
 
 <tr>
-<th>¼ö·®</th>
-<td><input type="text" name="quantity" value="${p.quantity }"></td>
+<th>ì£¼ë¬¸ìˆ˜ëŸ‰</th>
+<td><input type="text" name="quantity"></td>
 </tr>
 
 <tr>
 <td colspan="2">
-<input type="submit" value="¼öÁ¤">
-<input type="button" value="»èÁ¦" id="del">
+	<input type="hidden" name="m_id" id="m_id" value="${ sessionScope.id }"><input type="submit" value="êµ¬ë§¤">
+	<input type="button" value="ì¥ë°”êµ¬ë‹ˆë¡œ" id="cart">
 </td>
 </tr>
-
 </table>
+</form>
+
+<a href="${pageContext.request.contextPath }/review/reviewForm">ë¦¬ë·° ì‘ì„±</a>
 
 </body>
 </html>

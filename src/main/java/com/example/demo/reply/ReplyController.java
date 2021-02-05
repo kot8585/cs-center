@@ -1,6 +1,5 @@
 package com.example.demo.reply;
 
-import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,11 +21,4 @@ public class ReplyController {
 		
 		return mav;
 	}
-	
-	/*
-	 * @RequestMapping(value="/rep/list") public ModelAndView list(int board_num){
-	 * System.out.println("ReplyController.list()"); ArrayList<Reply> list =
-	 * (ArrayList<Reply>) service.getReplyByBoardNum(board_num); ModelAndView mav =
-	 * new ModelAndView("board/listRep"); mav.addObject("list", list); return mav; }
-	 */
 }

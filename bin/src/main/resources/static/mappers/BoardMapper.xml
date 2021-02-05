@@ -9,6 +9,7 @@
 		<result property="writer" column="writer"/>
 		<result property="title" column="title"/>
 		<result property="content" column="content"/>
+		<result property="b_date" column="b_date"/>
 		<result property="path" column="path"/>
 	</resultMap>
 	
@@ -33,7 +34,7 @@
 	</delete>
 	
 	<update id="update" parameterType="com.example.demo.board.Board">
-		update member set pwd=#{pwd}, title=#{title}, content=#{content},email=#{email} where id=#{id}
+		update member set password=#{password}, title=#{title}, content=#{content},email=#{email} where id=#{id}
 	</update>
 	
 	<select id="getMyQuestionListById" parameterType="String" resultMap="board">

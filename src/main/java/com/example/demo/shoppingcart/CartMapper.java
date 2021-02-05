@@ -8,5 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface CartMapper {
 
 	ArrayList<Shoppingcart> getShoppingcartById(String id);
+
+	void insertCart(Shoppingcart cart);
 	
 }

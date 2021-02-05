@@ -7,12 +7,25 @@
 		<result property="num" column="num"/>
 		<result property="m_id" column="m_id"/>
 		<result property="p_num" column="p_num"/>
-		<result property="cost" column="cost"/>
+		<result property="quantity" column="quantity"/>
+		<result property="address" column="address"/>
+		<result property="tel" column="tel"/>
 		<result property="o_date" column="o_date"/>
+		<result property="cost" column="cost"/>
 		<result property="state" column="state"/>
 	</resultMap>
 	
 	<select id="getMyOrderListById" parameterType="String" resultMap="order">
 	SELECT * FROM order1 WHERE m_id=#{m_id}
 	</select>
+	
+	
+	<insert id="insertOrder" parameterType="com.example.demo.order.Order">
+	INSERT INTO order1 VALUES(SEQ_ORDER1.nextval, #{m_id}, #{p_num}, #{quantity}, #{address}, #{tel}, sysdate, #{cost} ,#{state})
+	</insert>
+	
+	<select id="getAllOrderList" resultMap="order">
+	SELECT * FROM order1 ORDER BY num
+	</select>
+	
 </mapper>

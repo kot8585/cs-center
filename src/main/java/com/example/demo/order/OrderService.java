@@ -15,6 +15,16 @@ public class OrderService {
 		// TODO Auto-generated method stub
 		return mapper.getMyOrderListById(id);
 	}
+
+	public void addOrder(Order o) {
+		// TODO Auto-generated method stub
+		mapper.insertOrder(o);
+	}
+
+	public ArrayList<Order> getAllOrderList() {
+		// TODO Auto-generated method stub
+		return mapper.getAllOrderList();
+	}
 	
 	
 }
