@@ -7,6 +7,7 @@
 <title>마이페이지</title>
 </head>
 <body>
+<a href="${ pageContext.request.contextPath }/member/main">메인으로</a>
 
 <a href="${ pageContext.request.contextPath }/member/editForm">내정보수정</a>
 <a href="${ pageContext.request.contextPath }/mypage/myOrderForm">주문내역</a>

@@ -10,6 +10,7 @@
 	<result column="price" property="price" />
 	<result column="origin" property="origin" />
 	<result column="material" property="material" />
+	<result column="quantity" property="quantity" />
 	<result column="imgPath" property="imgPath" />
 	
 	<result column="event_num" property="event_num" />
@@ -17,7 +18,7 @@
 </resultMap>
 	
 <insert id="insert" parameterType="com.example.demo.product.Product">
-insert into product values(#{num}, #{name}, #{quantity}, #{info}, #{price}, #{seller_id}, #{category1_id}, ${category2_id}, #{category3_id})
+insert into product values(#{num}, #{name}, #{maker}, #{price}, #{origin}, #{material}, #{quantity}, #{imgPath}, #{event_num})
 </insert>
 	
 <select id="selectByNum" parameterType="int" resultMap="ProdResult">
@@ -53,7 +54,7 @@ select*from product
 </select>	
 	
 <update id="update" parameterType="com.example.demo.product.Product">
-update product set name=#{name}, price=#{price}, info=#{info}, quantity=#{quantity} where num=#{num}
+update product set name=#{name}, maker=#{maker}, price=#{price}, origin=#{origin}, material=#{material}, quantity=#{quantity}, imgPath=#{imgPath}, event_num=#{event_num} where num=#{num}
 </update>	
 
 <delete id="delete" parameterType="int">
@@ -64,23 +65,4 @@ delete product where num=#{num}
 select seq_product.nextval from dual
 </select>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-	
-	
 </mapper>

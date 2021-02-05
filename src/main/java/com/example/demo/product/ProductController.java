@@ -38,24 +38,22 @@ public class ProductController {
       ArrayList<Product> list = (ArrayList<Product>) service.getProductAll();
       System.out.println(list.toString());
       ModelAndView mav = new ModelAndView("product/list");
-      
-   
-      
-      mav.addObject("list", list);
+
       
       for (int i = 0; i < list.size(); i++) {
          String path = basePath + list.get(i).getNum() + "\\";
          File imgDir = new File(path);   
+        
          String[] files = imgDir.list();
          if(imgDir.exists()) {
             for(int j = 0; j < files.length; j++) {
                mav.addObject("file" + j, files[j]);
             }
+            list.get(i).setImgPath(files[0]);
          }
       }
       
-
-      
+      mav.addObject("list", list);
       return mav;
    }
       
@@ -78,7 +76,6 @@ public class ProductController {
       mav.addObject("p", p);
       return mav;
       
-      
    }
    
    @RequestMapping("/img")
@@ -88,23 +85,19 @@ public class ProductController {
       HttpHeaders header = new HttpHeaders();
       ResponseEntity<byte[]> result = null;
       try {
-   header.add("Content-Type", Files.probeContentType(f.toPath()));
-result = new ResponseEntity<>
-(FileCopyUtils.copyToByteArray(f), header, HttpStatus.OK);
+    	  header.add("Content-Type", Files.probeContentType(f.toPath()));
+    	  result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(f), header, HttpStatus.OK);
 
       } catch (IOException e) {
          // TODO Auto-generated catch block
          e.printStackTrace();
       }
 
-
       return result;
    }
    
    
-   
-   
-   }
+}
    
    
    

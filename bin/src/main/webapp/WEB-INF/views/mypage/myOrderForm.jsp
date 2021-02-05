@@ -10,13 +10,11 @@
 </head>
 <body>
 <c:if test="${empty list }">
- 등록된 상품이 없다. 
+ 주문 내역이 없다. 
 </c:if>
 <c:if test="${not empty list }">
 <table border="1">
-
-<tr><th>주문번호</th><th>주문자ID</th><th>제품번호</th><th>가격</th><th>날짜</th><th>배송상태</th>
-
+<tr><th>num</th><th>m_idID</th><th>p_num</th><th>quantity</th><th>address</th><th>tel</th><th>o_date</th><th>cost</th><th>state</th><th>리뷰작성</th>
 <c:forEach var="p" items="${list }">
 <tr>
 	<td>${ p.num }</td>

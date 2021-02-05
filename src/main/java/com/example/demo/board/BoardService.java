@@ -13,19 +13,19 @@ public class BoardService {
 	@Autowired
 	private BoardMapper mapper;
 
-	void addBoard(Board b) {
+	public void addBoard(Board b) {
 		mapper.insert(b);
 	}
 	
-	Board getBoardByNum(int num) {
+	public Board getBoardByNum(int num) {
 		return mapper.select(num);
 	}
 	
-	List getBoardById(String id) {
+	public List getBoardById(String id) {
 		return mapper.selectById(id);
 	}
 	
-	List getAllBoard() {
+	public List getAllBoard() {
 		return mapper.selectAll();
 	}
 	
@@ -45,6 +45,7 @@ public class BoardService {
 	public int getNum() {
 		return mapper.getNum();
 	}
+
 	
 	
 }

@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.reply.Reply;
 
-
-
 @Service
 public class ProductService {
 
@@ -64,16 +62,5 @@ public class ProductService {
 	public int getNum() {
 		return mapper.getNum();
 	}
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }
