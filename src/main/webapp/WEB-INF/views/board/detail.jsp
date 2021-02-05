@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -11,9 +10,46 @@
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-	var str = "";
-	$(document).ready(function(){
+//댓글 전부 출력하는 함수 - 재사용성을 위해
+function showReplyList(){ 
+		$.ajax({
+			url : "${pageContext.request.contextPath}/rep/list",
+			  dataType: "json",
+				    type: "POST",
+				    data : {"board_num" : "${b.num}"},
+				    success: function (result) {
+						var htmls ="";
+						if(result.length < 1){
 
+							htmls.push("등록된 댓글이 없습니다.");
+
+						} else{ //javascript:void(0) : 링크이동을 하지 않기위해
+							$(result).each(function(){
+								htmls+=this.content+"(작성자:"+this.writer+")<br>";
+								htmls+='<a href="javascript:void(0)" onclick="fn_editReply(' + this.num + ', \'' + this.writer + '\', \'' + this.content + '\' )" style="padding-right:5px">수정</a>';
+
+								htmls+='<a href="javascript:void(0)" onclick="fn_delReply(' + this.num + ')" >삭제</a>';
+
+								htmls+="<hr>"
+						});
+						}
+						$("#replyList").html(htmls);
+				     }
+		});
+}
+
+ //댓글 삭제하기 -- 안됌
+function fn_delReply(num){
+	$.post("${pageContext.request.contextPath}/rep/del?num="+num).done(function(data){
+		showReplyList();
+	});
+	}
+
+	$(document).ready(function(){
+		
+		showReplyList();
+		
+		//게시판 삭제
 		$("#edit").click(function(){
 			var result = confirm("글을 삭제하시겠습니까?");
 			if(result){
@@ -21,24 +57,26 @@
 			}
 		});
 		
-		$("#repWrite").click(function(){
-			$.post("${pageContext.request.contextPath}/rep/write",
-					{
-						board_num : ${b.num},
-						text : $("#rep_title").val(),
-						content : $("#rep_content").val()
-					})
-			.done(function(data){
-				var items = eval("(" + data + ")");
-				//var items = eval( data );
-				//for(i=0;i<items.length;i++){
-		    	//	str+=items[i].content+"(작성자:"+items[i].writer+")<br>";
-		    	//}
-				str+=items.content+"(작성자:"+items.writer+")<br>";
-
-		    	$("#reply").html(str);
-			});
+		//댓글 작성
+		$("#repWrite").click(function() { 
+			$.post( "/rep/write", 
+					{ 
+				board_num : ${b.num},
+				text : $("#rep_title").val(),
+				content : $("#rep_content").val(),
+				
+		    		} )
+		    .done(function( data ) {
+		    	
+		    	showReplyList();
+		    	
+		    	//작성되면 댓글폼 초기화하기
+		    	$("#rep_title").val("");
+		    	$("#rep_content").val("");
+		  });
 		});
+
+		
 	});
 </script>
 </head>
@@ -92,11 +130,11 @@
 				<input type="button" value="삭제하기" id="edit">
 			</c:if>
 	</form>
-	<!-- 관리자 페이지일경우에만 뜸 -->	
+	<!-- 댓글 작성 폼 -->	
 	<form action="" method="post">
 		<table border="1">
 			<tr>
-				<td>작성자 : <input type="text" id="rep_title"></td>
+				<td>제목 : <input type="text" id="rep_title"></td>
 			</tr>
 			<tr>
 				<td>내용 : <textarea id="rep_content"></textarea></td>
@@ -105,17 +143,13 @@
 				<td><input type="button" id="repWrite" value="작성" ></td>
 			</tr>
 		</table>
+			<input type="hidden" id="writer" value="${sessionScope.id }" >
+			<input type="hidden" id="pwd" value="${sessionScope.id }" >
 	</form>
 	
 	<!-- 댓글 작성되면 이 영역에 넣는다 -->
-	<div id="reply"></div>
-	
-	<!-- 댓글경우 출력하기 -->
-		<table border="1">
-	<c:forEach var="r" items="${b.reps }">
-			<tr><td>작성자: <input type="text" value="${r.writer}"></td></tr>
-			<tr><td>내용 : <textarea rows="5" cols="40">${r.content}</textarea></td></tr>
-	</c:forEach>
-		</table>
+	<h6>Reply List</h6>
+	<div id="replyList"></div>
+
 </body>
 </html>

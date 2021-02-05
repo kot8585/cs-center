@@ -17,11 +17,11 @@
 	</select>
 	
 	<select id="getReplyByBoardNum" parameterType="int" resultMap="rep">
-	SELECT * FROM reply WHERE board_num=#{board_num}
+	SELECT * FROM reply WHERE board_num=#{board_num} order by num
 	</select>
 	
 	<insert id="insert" parameterType="com.example.demo.reply.Reply">
-		insert into reply values(seq_reply.nextval, #{board_num}, 'admin', #{content}, sysdate, 'path')
+		insert into reply values(seq_reply.nextval, #{board_num}, ${writer}, #{content}, sysdate, 'path')
 	</insert>
 	
 	<select id="select" resultMap="rep" parameterType="int">
