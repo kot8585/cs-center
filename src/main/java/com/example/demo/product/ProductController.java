@@ -1,10 +1,13 @@
 package com.example.demo.product;
 
 import java.io.File;
-import java.io.IOException;
+
 import java.nio.file.Files;
 import java.util.ArrayList;
-import java.util.Iterator;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -18,8 +21,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 
+
 @Controller
 public class ProductController {
+
 
    @Autowired
    private ProductService service;
@@ -91,6 +96,7 @@ result = new ResponseEntity<>
          // TODO Auto-generated catch block
          e.printStackTrace();
       }
+
 
       return result;
    }

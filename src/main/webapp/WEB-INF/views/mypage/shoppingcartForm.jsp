@@ -26,11 +26,13 @@ $(document).ready(function() {
 	<td><a href="${ pageContext.request.contextPath }/product/detail?num=${ p.p_num}">${ p.p_num }</a></td>
 	<td>${ p.cost }</td>
 	<td>${ p.o_date }</td>
+
 	<td>
 	<!-- TODO : order/order에 p_num이 들어가게. -->
 	<input type="hidden" id="p_num${ p.p_num }" value="${ p.p_num }">
 	<input type="button" class="buy_btn" value="구매" onclick="javascript:num='${ p.p_num }'">
 	</td>
+
 </tr>
 </c:forEach>
 </table>

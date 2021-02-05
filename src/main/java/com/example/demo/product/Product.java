@@ -21,10 +21,12 @@ public class Product {
    private MultipartFile file1;
    private MultipartFile file2;
    private MultipartFile file3;
+   
    public Product() {
       super();
    }
-public Product(int num, String name, String maker, int price, String origin, String material, int quantity,
+   
+   public Product(int num, String name, String maker, int price, String origin, String material, int quantity,
 		String imgPath) {
 	super();
 	this.num = num;

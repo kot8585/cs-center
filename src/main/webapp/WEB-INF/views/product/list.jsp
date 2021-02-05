@@ -13,6 +13,7 @@
 </head>
 <body>
 
+
    <h3>상품리스트</h3>
    <table border="1" cellspacing="0">
       <thead>
@@ -25,12 +26,15 @@
             <th>원산지</th>
             <th>재료</th>
             <th>수량</th>
+
          </tr>
       </thead>
       <c:forEach var="p" items="${list}">
          <tr>
             <td>${p.num}</td>
+
             <td><img id="bigImg" src="${pageContext.request.contextPath }/img?fname=${file0 }&num=${p.num}" style="width:60px;height:60px"></td>
+
             <td><a href="${pageContext.request.contextPath }/product/detail?num=${p.num}">${p.name}</a></td>
             <td>${p.maker}</td>
             <td>${p.price}</td>
@@ -40,6 +44,7 @@
          </tr>
       </c:forEach>
    </table>
-   
-   
-   
+
+</body>
+</html>
+

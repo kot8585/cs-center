@@ -61,6 +61,7 @@ public class MemberController {
 			return "/mypage/mypage";
 		}
 	}
+	
 	@RequestMapping("/member/findForm")
 	public void findForm() {
 		
@@ -76,7 +77,7 @@ public class MemberController {
 		System.out.println(m.getId());
 		System.out.println(m.getPassword());
 		ModelAndView mav = new ModelAndView("member/findResult");
-		if(m == null) {
+		if(m.getId() == null) {
 			result = "등록된 아이디가 이메일 또는 이름이 아닙니다.";
 			mav.addObject("result", result);
 		} else {

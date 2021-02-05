@@ -14,6 +14,10 @@ public class CartService {
 	public ArrayList<Shoppingcart> getShoppingcartById(String id) {
 		return mapper.getShoppingcartById(id);
 	}
+
+	public void addCart(Shoppingcart cart) {
+		mapper.insertCart(cart);
+	}
 	
 	
 }
