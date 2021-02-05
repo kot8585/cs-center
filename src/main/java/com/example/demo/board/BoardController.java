@@ -2,12 +2,15 @@ package com.example.demo.board;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,12 +39,7 @@ public class BoardController {
 		System.out.println("/board/list()");
 		ArrayList<Board> list = (ArrayList<Board>) service.getAllBoard();
 
-		//for(int i=0; i<list.size(); i++) {
-		//	//해당 게시물의 댓글 가져오기
-		//	Board b = list.get(i);
-		//	ArrayList<Reply> reps = (ArrayList<Reply>) repService.getReplyByBoardNum(b.getNum());
-		//	b.setReps(reps);
-		//}
+		
 
 		ModelAndView mav = new ModelAndView("board/list");
 		mav.addObject("list", list);
@@ -57,6 +55,7 @@ public class BoardController {
 	public String write(Board b) {
 		System.out.println("/board/write");
 		int num = service.getNum();
+		System.out.println("게시물의 num : " + num );
 		b.setNum(num);
 		saveImg(num, b.getFile1());
 		saveImg(num, b.getFile2());
@@ -87,19 +86,70 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/board/detail")
-	public ModelAndView detail(@RequestParam int num) {
-		System.out.println("/board/detail");
+	public ModelAndView detail(int num) {
+		System.out.println("/board/detail()");
 		ModelAndView mav = new ModelAndView("board/detail");
 		Board b = service.getBoardByNum(num);
+		
+		//해당 게시물의 댓글 가져오기
+		ArrayList<Reply> reps = (ArrayList<Reply>) repService.getReplyByBoardNum(b.getNum());
+		b.setReps(reps);
+				
+
 		String path = basePath + b.getNum() + "\\";
 		File imgDir = new File(path);
 		if(imgDir.exists()) {
 			String[] files  = imgDir.list();
 			for (int j = 0; j < files.length; j++) {
-				mav.addObject("file" + j, files[j]);
+				mav.addObject("file" + j, files[j]); 
 			}
 		}
 		mav.addObject("b", b);
 		return mav;
+	}
+	
+	@RequestMapping("/board/img")
+	public ResponseEntity<byte[]> getImg(String fname, int num){
+		System.out.println("/board/img");
+		String path = basePath + num + "\\" + fname;
+		File f = new File(path);
+		HttpHeaders header = new HttpHeaders();
+		ResponseEntity<byte[]> result = null;
+		try {
+			header.add("Content-Type", Files.probeContentType(f.toPath()));
+			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(f),header, HttpStatus.OK);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		return result;
+	}
+	
+	@RequestMapping("/board/edit")
+	public String edit(Board b) {
+		System.out.println("BoardController.edit()");
+		service.update(b);
+		return "redirect:/board/list";
+	}
+	
+	@RequestMapping("/board/del")
+	public String del(int num) {
+		System.out.println("BoardController.del()");
+		service.delBoard(num);
+		
+		//이미지 삭제하기
+		String path = basePath + num+"\\"; 
+		File imgDir = new File(path);
+		
+		if (imgDir.exists()) {
+			String[] files = imgDir.list();
+			for (int j = 0; j < files.length; j++) {
+				File f = new File(path + files[j]);
+				f.delete();
+			}
+		}
+		imgDir.delete();
+		
+		return "redirect:/board/list";
 	}
 }

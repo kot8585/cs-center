@@ -21,7 +21,7 @@
 	</select>
 	
 	<insert id="insert" parameterType="com.example.demo.reply.Reply">
-		insert into reply values(seq_reply.nextval, #{board_num}, #{writer}, #{content}, #{r_date}, #{path})
+		insert into reply values(seq_reply.nextval, #{board_num}, 'admin', #{content}, sysdate, 'path')
 	</insert>
 	
 	<select id="select" resultMap="rep" parameterType="int">

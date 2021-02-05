@@ -46,6 +46,7 @@ var sessionId = '<%=session.getAttribute("id") %>'
 			</tr>
 		</c:forEach>
 	</table>
+
 	세션 ID : <c:out value="${sessionScope.id}" />
 	<input type="button" id ="write" value="글작성">
 
