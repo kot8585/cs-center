@@ -19,6 +19,10 @@ public class ReviewService {
 		  return mapper.selectAll();
 	   }
 	   
+	   public Review getDetail(int num) {
+		   return mapper.select(num);
+	   }
+	   
 	   
 	   public void editReview(Review r) {
 		   mapper.update(r);

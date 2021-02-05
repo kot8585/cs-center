@@ -38,8 +38,7 @@ public class ProductController {
       ArrayList<Product> list = (ArrayList<Product>) service.getProductAll();
       System.out.println(list.toString());
       ModelAndView mav = new ModelAndView("product/list");
-      
-     
+
       
       for (int i = 0; i < list.size(); i++) {
          String path = basePath + list.get(i).getNum() + "\\";
