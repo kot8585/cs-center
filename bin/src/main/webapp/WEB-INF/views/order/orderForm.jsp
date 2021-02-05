@@ -1,25 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-<h3>ÁÖ¹®Á¤º¸</h3>
+<h3>ì£¼ë¬¸ì •ë³´</h3>
 <table border="1" cellspacing="0">
 	<tr>
-		<th>Á¦Ç°¸í</th><th>ÁÖ¹®¼ö·®</th><th>°¡°İ</th><th>°áÁ¦±İ¾×</th>
+		<th>ì œí’ˆëª…</th><th>ì£¼ë¬¸ìˆ˜ëŸ‰</th><th>ê°€ê²©</th><th>ê²°ì œê¸ˆì•¡</th>
 	</tr>
 	<tr>
 		<td>${ order.p.name }</td><td>${ order.quantity }</td><td>${ order.p.price }</td><td>${ order.quantity * order.p.price }</td>
 	</tr>
 </table>
 <form action="${ pageContext.request.contextPath }/order/order" method="post">
-¹è¼ÛÁö ÁÖ¼Ò : <input type="text" name="address" value="${ order.m.address }"><br>
-¹ŞÀ» »ç¶÷ ÀüÈ­¹øÈ£ : <input type="text" name="tel" value="${ order.m.tel }"><br>
-<input type="submit" value="°áÁ¦">
+ë°°ì†¡ì§€ ì£¼ì†Œ : <input type="text" name="address" value="${ order.m.address }"><br>
+ë°›ì„ ì‚¬ëŒ ì „í™”ë²ˆí˜¸ : <input type="text" name="tel" value="${ order.m.tel }"><br>
+<input type="submit" value="ê²°ì œ">
 <input type="hidden" name="m_id" value="${ sessionScope.id }">
 <input type="hidden" name="p_num" value="${ order.p_num }">
 <input type="hidden" name="quantity" value="${ order.quantity }">

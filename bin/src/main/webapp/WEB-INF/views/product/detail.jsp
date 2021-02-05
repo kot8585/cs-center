@@ -12,38 +12,42 @@
       $(".img").mouseover(function() {
          $("#bigImg").attr('src', this.src);
       });
-   });
+      
+      $("#cart").click(function() {
+  		var m_id = $("#m_id").val();
+  		var p_num = $("#p_num").val();
+  		var cost = $("#cost").val();
+  		alert(m_id + " + " + p_num + " + " + cost);
+  		$.post("/cart/addCart", { m_id: m_id, p_num: p_num, cost: cost })
+  		.done(function(data) {
+  			// 중복 불가능하게 하는건 다음번에 잡자.
+  			alert("장바구니에 추가되었습니다!");
+  		});
+  	});
+});
 </script>
 </head>
 <body>
-
+<h5>세션 id : ${ sessionScope.id }</h5>
 <h3>상품 상제 정보</h3>
-
-
-
-
-
+<form action="${ pageContext.request.contextPath }/order/orderForm" method="post">
 <table border="1" cellspacing="0">
 <tr>
 
 <th>번호</th>
-<td><input type="text" name="num" value="${p.num }">
-
-</td>
+<td><input type="text" name="p_num" id="p_num" value="${p.num }" readonly></td>
 </tr>
 
 
 <tr>
 
 <th>상품명</th>
-<td><input type="text" name="name" value="${p.name }">
+<td><input type="text" name="name" value="${p.name }" readonly>
 
 </td>
 </tr>
 
 <tr>
-
-
          <th>이미지</th>
          <td><c:if test="${empty file0 }">
                등록된 이미지가 없습니다.
@@ -62,59 +66,44 @@
                </table>
             </c:if></td>
       </tr>
-      
-
 <tr>
 <th>메이커</th>
-<td><input type="text" name="maker" value="${p.maker }">
-
-</td>
+<td><input type="text" name="maker" value="${p.maker }" readonly></td>
 </tr>
 
 <tr>
-
 <th>가격</th>
-<td><input type="text" name="price" value="${p.price }">
-
-</td>
+<td><input type="text" name="price" id="cost"  value="${p.price }" readonly></td>
 </tr>
 
 <tr>
-
 <th>원산지</th>
-<td><input type="text" name="origin" value="${p.origin }">
-
-</td>
+<td><input type="text" name="origin" value="${p.origin }" readonly></td>
 </tr>
 
 <tr>
-
 <th>재료</th>
-<td><input type="text" name="material" value="${p.material }">
-
-</td>
+<td><input type="text" name="material" value="${p.material }" readonly></td>
 </tr>
 
 <tr>
-
-<th>수량</th>
-<td><input type="text" name="quantity" value="${p.quantity }"></td>
-
+<th>남는수량</th>
+<td><input type="text" value="${p.quantity }" readonly="readonly"></td>
 </tr>
 
-
-
-
+<tr>
+<th>주문수량</th>
+<td><input type="text" name="quantity"></td>
+</tr>
 
 <tr>
 <td colspan="2">
-
-<input type="submit" value="수정">
-<input type="button" value="삭제" id="del">
-
+	<input type="hidden" name="m_id" id="m_id" value="${ sessionScope.id }"><input type="submit" value="구매">
+	<input type="button" value="장바구니로" id="cart">
 </td>
 </tr>
 </table>
+</form>
 
 <a href="${pageContext.request.contextPath }/review/reviewForm">리뷰 작성</a>
 
