@@ -14,19 +14,19 @@ public class ReplyController {
 	private RepService service;
 	
 	@RequestMapping("/rep/write")
-	public String write(Reply r) {
+	public ModelAndView write(Reply r) {
 		System.out.println("ReplyController.write()");
 		service.addReply(r);
-		return "redirect:/rep/list?board_num="+r.getBoard_num();
-	}
-	
-	@RequestMapping(value="/rep/list")
-	public ModelAndView list(@RequestParam(value="board_num")int board_num){
-		System.out.println("ReplyController.list()");
-		ArrayList<Reply> list = 
-				(ArrayList<Reply>) service.getReplyByBoardNum(board_num);
-		ModelAndView mav = new ModelAndView("img/listRep");
-		mav.addObject("list", list);
+		ModelAndView mav = new ModelAndView("board/listRep");
+		mav.addObject(r);
+		
 		return mav;
 	}
+	
+	/*
+	 * @RequestMapping(value="/rep/list") public ModelAndView list(int board_num){
+	 * System.out.println("ReplyController.list()"); ArrayList<Reply> list =
+	 * (ArrayList<Reply>) service.getReplyByBoardNum(board_num); ModelAndView mav =
+	 * new ModelAndView("board/listRep"); mav.addObject("list", list); return mav; }
+	 */
 }

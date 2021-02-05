@@ -9,16 +9,18 @@
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
+	var str = "";
 	$(document).ready(function(){
+
 		$("#edit").click(function(){
 			var result = confirm("글을 삭제하시겠습니까?");
 			if(result){
-				location.href = "${pageContext.request.contextPath}/board/del?num="+${b.num};
+				location.href = "${pageContext.request.contextPath}/board/del?num=${b.num}";
 			}
 		});
 		
 		$("#repWrite").click(function(){
-			$.post("/rep/write",
+			$.post("${pageContext.request.contextPath}/rep/write",
 					{
 						board_num : ${b.num},
 						text : $("#rep_title").val(),
@@ -26,10 +28,11 @@
 					})
 			.done(function(data){
 				var items = eval("(" + data + ")");
-				for(i=0;i<items.length;i++){
-		    		str+=items[i].content+"(작성자:"+items[i].writer+")<br>";
-		    	}
-				
+				//var items = eval( data );
+				//for(i=0;i<items.length;i++){
+		    	//	str+=items[i].content+"(작성자:"+items[i].writer+")<br>";
+		    	//}
+				str+=items.content+"(작성자:"+items.writer+")<br>";
 
 		    	$("#reply").html(str);
 			});
@@ -91,10 +94,10 @@
 	<form action="" method="post">
 		<table border="1">
 			<tr>
-				제목 : <td><input type="text" id="rep_title"></td>
+				<td>작성자 : <input type="text" id="rep_title"></td>
 			</tr>
 			<tr>
-				내용 : <td><textarea id="rep_content"></textarea></td>
+				<td>내용 : <textarea id="rep_content"></textarea></td>
 			</tr>
 			<tr>
 				<td><input type="button" id="repWrite" value="작성" ></td>
@@ -105,7 +108,12 @@
 	<!-- 댓글 작성되면 이 영역에 넣는다 -->
 	<div id="reply"></div>
 	
-	<!-- 댓글있을경우 출력하기 -->
-
+	<!-- 댓글경우 출력하기 -->
+		<table border="1">
+	<c:forEach var="r" items="${b.reps }">
+			<tr><td>작성자: <input type="text" value="${r.writer}"></td></tr>
+			<tr><td>내용 : <textarea rows="5" cols="40">${r.content}</textarea></td></tr>
+	</c:forEach>
+		</table>
 </body>
 </html>
