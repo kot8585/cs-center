@@ -10,6 +10,8 @@ public interface ReviewMapper {
 	void insert(Review r);
 	   
 	ArrayList<Review> selectAll();
+	
+	Review select(int num);
 	   
 	void update(Review r);
 	   

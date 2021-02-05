@@ -49,7 +49,7 @@ select*from product where category3_id = #{category3_id} order by num
 </select>	
 	
 <select id="selectAll" resultMap="ProdResult">
-select*from product order by num
+select*from product
 </select>	
 	
 <update id="update" parameterType="com.example.demo.product.Product">

@@ -39,7 +39,7 @@ public class ProductController {
       System.out.println(list.toString());
       ModelAndView mav = new ModelAndView("product/list");
       
-      
+   
       
       mav.addObject("list", list);
       
