@@ -62,9 +62,8 @@ function fn_delReply(num){
 			$.post( "/rep/write", 
 					{ 
 				board_num : ${b.num},
-				text : $("#rep_title").val(),
+				writer : $("#rep_writer").val(),
 				content : $("#rep_content").val(),
-				
 		    		} )
 		    .done(function( data ) {
 		    	
@@ -134,7 +133,7 @@ function fn_delReply(num){
 	<form action="" method="post">
 		<table border="1">
 			<tr>
-				<td>제목 : <input type="text" id="rep_title"></td>
+				<td>작성자 : <input type="text" id="rep_writer"></td>
 			</tr>
 			<tr>
 				<td>내용 : <textarea id="rep_content"></textarea></td>
@@ -143,8 +142,6 @@ function fn_delReply(num){
 				<td><input type="button" id="repWrite" value="작성" ></td>
 			</tr>
 		</table>
-			<input type="hidden" id="writer" value="${sessionScope.id }" >
-			<input type="hidden" id="pwd" value="${sessionScope.id }" >
 	</form>
 	
 	<!-- 댓글 작성되면 이 영역에 넣는다 -->

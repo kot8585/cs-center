@@ -7,7 +7,6 @@
 		<result property="num" column="num"/>
 		<result property="board_num" column="board_num"/>
 		<result property="writer" column="writer"/>
-		<result property="title" column="title"/>
 		<result property="content" column="content"/>
 		<result property="path" column="path"/>
 	</resultMap>
@@ -21,7 +20,7 @@
 	</select>
 	
 	<insert id="insert" parameterType="com.example.demo.reply.Reply">
-		insert into reply values(seq_reply.nextval, #{board_num}, ${writer}, #{content}, sysdate, 'path')
+		insert into reply(num, board_num, writer, content, r_date, path) values(seq_reply.nextval, #{board_num}, #{writer}, #{content}, sysdate, 'path')
 	</insert>
 	
 	<select id="select" resultMap="rep" parameterType="int">
