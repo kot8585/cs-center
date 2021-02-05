@@ -1,18 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>¸¶ÀÌÆäÀÌÁö</title>
+<meta charset="UTF-8">
+<title>ë§ˆì´íŽ˜ì´ì§€</title>
 </head>
 <body>
-<a href="${ pageContext.request.contextPath }/member/editForm">³»Á¤º¸¼öÁ¤</a>
-<a href="${ pageContext.request.contextPath }/mypage/myOrderForm">ÁÖ¹®³»¿ª</a>
-<a href="${ pageContext.request.contextPath }/mypage/myQuestionForm">¹®ÀÇ³»¿ª</a>
-<a href="${ pageContext.request.contextPath }/mypage/shoppingcartForm">Àå¹Ù±¸´Ï</a>
 
-<a href="${ pageContext.request.contextPath }/member/logout">·Î±×¾Æ¿ô</a>
-<a href="${ pageContext.request.contextPath }/member/out">ÅðÅ»</a>
+<a href="${ pageContext.request.contextPath }/member/editForm">ë‚´ì •ë³´ìˆ˜ì •</a>
+<a href="${ pageContext.request.contextPath }/mypage/myOrderForm">ì£¼ë¬¸ë‚´ì—­</a>
+<a href="${ pageContext.request.contextPath }/mypage/myQuestionForm">ë¬¸ì˜ë‚´ì—­</a>
+<a href="${ pageContext.request.contextPath }/mypage/shoppingcartForm">ìž¥ë°”êµ¬ë‹ˆ</a>
+
+<a href="${ pageContext.request.contextPath }/member/logout">ë¡œê·¸ì•„ì›ƒ</a>
+<a href="${ pageContext.request.contextPath }/member/out">í‡´íƒˆ</a>
+
 </body>
 </html>

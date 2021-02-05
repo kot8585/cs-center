@@ -1,13 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-</head>
-<body>
-¾ÆÀÌµğ : ${m.id }<br>
-ºñ¹Ğ¹øÈ£ : ${m.password }
-</body>
-</html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+ì•„ì´ë”” : ${m.id }
+ë¹„ë°€ë²ˆí˜¸ : ${m.password }
