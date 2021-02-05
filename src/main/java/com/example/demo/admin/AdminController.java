@@ -55,9 +55,7 @@ public class AdminController {
 	public ModelAndView orderList(HttpServletRequest req) {
 		System.out.println("AdminController.orderList()");
 		ModelAndView mav = new ModelAndView("admin/orderList");
-		HttpSession session = req.getSession(false);
 		ArrayList<Order> list = orderService.getAllOrderList();
-		System.out.println(list.get(0).toString());
 		mav.addObject("list", list);
 		return mav;
 	}
