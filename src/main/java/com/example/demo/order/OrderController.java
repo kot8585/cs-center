@@ -24,14 +24,9 @@ public class OrderController {
 	
 	@RequestMapping("/order/orderForm")
 	public ModelAndView orderForm(Order o) {
-		System.out.println("OrderController.orderForm()");
 		ModelAndView mav = new ModelAndView("order/orderForm");
-		System.out.println(o.getP_num());
 		Product p = productService.getProductByNum(o.getP_num());
-		System.out.println("product : "+p.toString());
-		System.out.println(o.getM_id());
 		Member m = memberService.getMember(o.getM_id()); 
-		System.out.println("member :" + m.toString());
 		o.setP(p);
 		o.setM(m);
 		mav.addObject("order", o);
@@ -40,8 +35,6 @@ public class OrderController {
 	
 	@RequestMapping("/order/order")
 	public String order(Order o) {
-		System.out.println("OrderController.order()");
-		System.out.println(o.toString());
 		orderService.addOrder(o);
 		return "/member/main";
 	}

@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
@@ -18,7 +18,7 @@
 			<td><input type="password" name="password" id="password"></td>
 		</tr>
 		<tr>
-			<td colspan="2" align="center"><input type="submit" value="로그인" ></td>
+			<td colspan="2" align="center"><input type="submit" value="濡쒓렇�씤" ></td>
 		</tr>
 	</table>
 </form>

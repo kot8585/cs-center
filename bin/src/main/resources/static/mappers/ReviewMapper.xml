@@ -13,7 +13,16 @@
    </resultMap>
    
    <insert id="insert" parameterType="com.example.demo.review.Review">
-      insert into review values(#{num}, #{pnum}, #{title}, #{writer}, #{content}, sysdate)
+      insert into review values(seq_review.NEXTVAL, #{pnum}, #{title}, #{writer}, #{content}, sysdate)
    </insert>
+   
+ <select id="select" resultMap="review" parameterType="String">
+   	SELECT * FROM review WHERE num=#{num} ORDER BY num
+   </select>
+   
+   
+   <select id="selectAll" resultMap="review" parameterType="String">
+   	SELECT * FROM review ORDER BY num
+   </select>
    
    </mapper>

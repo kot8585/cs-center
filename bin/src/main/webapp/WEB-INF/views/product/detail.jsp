@@ -105,7 +105,7 @@
 </table>
 </form>
 
-<a href="${pageContext.request.contextPath }/review/reviewForm">리뷰 작성</a>
+<c:import url="${ pageContext.request.contextPath }/review/reviewlist"></c:import>
 
 </body>
 </html>

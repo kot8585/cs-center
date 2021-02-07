@@ -14,14 +14,10 @@ public class CartController {
 	
 	@RequestMapping("/cart/addCart")
 	public void addCart(HttpServletRequest req) {
-		System.out.println("CartController.addCart()");
 		//  java.sql.SQLIntegrityConstraintViolationException: ORA-00001: unique constraint (HR.SYS_C007378) violated : 기본 키 두 개 생성 https://moonong.tistory.com/48 
 		String m_id = req.getParameter("m_id");
 		int p_num = Integer.parseInt(req.getParameter("p_num"));
 		int cost = Integer.parseInt(req.getParameter("cost"));
-		System.out.println(m_id);
-		System.out.println(p_num);
-		System.out.println(cost);
 		Shoppingcart cart = new Shoppingcart();
 		cart.setM_id(m_id);
 		cart.setP_num(p_num);

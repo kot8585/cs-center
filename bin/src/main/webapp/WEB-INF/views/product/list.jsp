@@ -33,7 +33,7 @@
          <tr>
             <td>${p.num}</td>
 
-            <td><img id="bigImg" src="${pageContext.request.contextPath }/img?fname=${file0 }&num=${p.num}" style="width:60px;height:60px"></td>
+            <td><img id="bigImg" src="${pageContext.request.contextPath }/img?fname=${p.imgPath }&num=${p.num}" style="width:60px;height:60px"></td>
 
             <td><a href="${pageContext.request.contextPath }/product/detail?num=${p.num}">${p.name}</a></td>
             <td>${p.maker}</td>

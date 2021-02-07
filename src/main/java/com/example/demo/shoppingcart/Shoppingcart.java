@@ -64,8 +64,9 @@ public class Shoppingcart {
 
 	@Override
 	public String toString() {
-		return "Shoppingcart [m_id=" + m_id + ", p_num=" + p_num + ", cost=" + cost + ", o_date=" + o_date + ", name="
-				+ name + "]";
+		return "Shoppingcart\n"
+				+ "m_id,p_num,cost,o_date,name\n"
+				+ m_id + "," + p_num + "," + cost + "," + o_date + "," + name;
 	}
 
 	
