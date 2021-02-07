@@ -64,11 +64,37 @@ public class ReviewController {
 	   }
 	
 	@RequestMapping("/review/reviewDetail")
-	public void detail() {
+	public ModelAndView detail(@RequestParam("num")int num) {
+		System.out.println("ReviewController.detail()");
+		System.out.println(num);
+		Review r = service.getDetail(num);
+		System.out.println(r.toString());
+		
+		ModelAndView mav = new ModelAndView("review/reviewDetail");
+		mav.addObject("r", r);
+		return mav;
 		
 	
 	}
 	
+	//@RequestMapping("/")
+	
+	
+	@RequestMapping("/review/editReview")
+	public String edit(Review r) {
+		System.out.println("ReviewController.edit()");
+		System.out.println(r.toString());
+		service.editReview(r);
+		
+		return "/member/main";
+	}
+	
+	@RequestMapping("/review/delReview")
+	public String del() {
+		
+		return "redirect:/member/main";
+		
+	}
 }
 
 
