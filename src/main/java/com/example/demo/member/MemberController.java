@@ -80,9 +80,11 @@ public class MemberController {
 		// 입력 받은 정보와 DB의 정보를 매칭하여 일치하지 않다면 경고 메시지를 findResult.jsp에 보내고, 일치하면 해당 정보를 findResult.jsp에 보낸다.
 		ModelAndView mav = new ModelAndView("member/findResult");
 		String result="";
-		if(m.getId() == null) {
-			result = "등록된 아이디가 이메일 또는 이름이 아닙니다.";
+		if(m == null) {
+			result = "이메일 또는 이름이 등록되지 않았습니다.";
+			mav.setViewName("member/failResult");
 			mav.addObject("result", result);
+			System.out.println(result);
 		} else {
 			mav.addObject("m", m);
 		}

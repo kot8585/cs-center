@@ -19,6 +19,7 @@ function checkEmpty(){
 	}
 }	
 $(document).ready(function(){
+	
 	$("#find").click(function(){
 		$.post("/member/find", {email: $("#email").val(), name: $("#name").val()})
 		.done(function(data){
@@ -31,6 +32,9 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
+<header>
+<a href="${pageContext.request.contextPath }/member/main">Main</a>
+</header>
 <h3>ID/PWD 찾기</h3>
 <p>회원가입 시 입력한 E-mail주소와 이름을 입력해주세요.
 <form>
