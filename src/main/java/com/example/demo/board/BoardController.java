@@ -82,6 +82,7 @@ public class BoardController {
 	public ModelAndView detail(int num) {
 		System.out.println("/board/detail()");
 		ModelAndView mav = new ModelAndView("board/detail");
+		System.out.println(num);
 		Board b = service.getBoardByNum(num);
 		
 		//해당 게시물의 댓글 가져오기
@@ -94,6 +95,7 @@ public class BoardController {
 		if(imgDir.exists()) {
 			String[] files  = imgDir.list();
 			for (int j = 0; j < files.length; j++) {
+				System.out.println(files[j].toString());
 				mav.addObject("file" + j, files[j]); 
 			}
 		}
