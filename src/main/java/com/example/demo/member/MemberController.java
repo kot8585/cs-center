@@ -58,19 +58,33 @@ public class MemberController {
 		}
 	}
 	
+	/**
+	 * findForm.jsp로 이동하기 위한 메소드
+	 */
 	@RequestMapping("/member/findForm")
 	public void findForm() {
 		
 	}
 	
+	/**
+	 * 
+	 * @param email 회원정보를 찾기 위해 입력 받은 email
+	 * @param name 회원정보를 찾기 위해 입력 받은 name
+	 * @return 회원찾기 폼에서 입력받은 정보로 회원정보를 찾아 findResult.jsp로 전달
+	 */
 	@RequestMapping("/member/find")
 	public ModelAndView find(@RequestParam("email")String email, @RequestParam("name")String name) {
-		String result="";
+		// 폼에서 입력받은 email과 name을 통해 DB에서 Id와 Pwd를 불러와 객체에 해당 정보를 저장한다.
 		Member m = service.getIdPwd(email, name);
+	
+		// 입력 받은 정보와 DB의 정보를 매칭하여 일치하지 않다면 경고 메시지를 findResult.jsp에 보내고, 일치하면 해당 정보를 findResult.jsp에 보낸다.
 		ModelAndView mav = new ModelAndView("member/findResult");
-		if(m.getId() == null) {
-			result = "등록된 아이디가 이메일 또는 이름이 아닙니다.";
+		String result="";
+		if(m == null) {
+			result = "이메일 또는 이름이 등록되지 않았습니다.";
+			mav.setViewName("member/failResult");
 			mav.addObject("result", result);
+			System.out.println(result);
 		} else {
 			mav.addObject("m", m);
 		}

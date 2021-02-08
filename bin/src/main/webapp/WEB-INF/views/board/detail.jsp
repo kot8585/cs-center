@@ -104,7 +104,7 @@ function fn_delReply(num){
 				<td><input type="text" name="b_date" value="${b.b_date}"></td>
 			
 			</tr>
-			<table border="1">
+		<table border="1">
 			<c:if test="${not empty file0 }">
 				<tr>
 					<td>이미지</td>
