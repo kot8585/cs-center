@@ -61,8 +61,6 @@ public class ReviewController {
 		ModelAndView mav = new ModelAndView("review/reviewDetail");
 		mav.addObject("r", r);
 		return mav;
-		
-	
 
 	}
 	
