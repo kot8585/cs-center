@@ -104,7 +104,7 @@ function fn_delReply(num){
 				<td><input type="text" name="b_date" value="${b.b_date}"></td>
 			
 			</tr>
-		<table border="1">
+	
 			<c:if test="${not empty file0 }">
 				<tr>
 					<td>이미지</td>
@@ -113,7 +113,7 @@ function fn_delReply(num){
 					<td><img src="${pageContext.request.contextPath }/board/img?fname=${file2}&num=${b.num}" class="img" width="50" height="50"></td>
 				</tr>
 			</c:if>
-			</table>
+			
 		</table>
 			<input type="hidden" name="num" value="${b.num}">
 			<input type="hidden" name="pwd" value="${b.pwd}">
@@ -123,28 +123,18 @@ function fn_delReply(num){
 				<input type="submit" value="수정하기">
 				<input type="button" value="삭제하기" id="edit">
 			</c:if>
+			<br>
 			
 			<!-- 관리자는 삭제버튼만 뜨게 하기 -->
 			<c:if test="${sessionScope.id eq 'admin'}">
 				<input type="button" value="삭제하기" id="edit">
 			</c:if>
+			<br>
 	</form>
-	<!-- 댓글 작성 폼 -->	
-	<form action="" method="post">
-		<table border="1">
-			<tr>
-				<td>작성자 : <input type="text" id="rep_writer"></td>
-			</tr>
-			<tr>
-				<td>내용 : <textarea id="rep_content"></textarea></td>
-			</tr>
-			<tr>
-				<td><input type="button" id="repWrite" value="작성" ></td>
-			</tr>
-		</table>
-	</form>
+
 	
 	<!-- 댓글 작성되면 이 영역에 넣는다 -->
+	<hr>
 	<h6>Reply List</h6>
 	<div id="replyList"></div>
 

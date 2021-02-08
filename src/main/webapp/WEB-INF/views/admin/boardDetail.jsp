@@ -81,11 +81,6 @@
 			<input type="hidden" name="num" value="${b.num}">
 			<input type="hidden" name="pwd" value="${b.pwd}">
 			
-			<!-- 작성자만 수정, 삭제 버튼 뜨게 하기 -->
-			<c:if test="${sessionScope.id eq b.writer}">
-				<input type="submit" value="수정하기">
-				<input type="button" value="삭제하기" id="edit">
-			</c:if>
 			
 			<!-- 관리자는 삭제버튼만 뜨게 하기 -->
 			<c:if test="${sessionScope.id eq 'admin'}">
@@ -96,7 +91,7 @@
 	<form action="" method="post">
 		<table border="1">
 			<tr>
-				<td>작성자 : <input type="text" id="rep_title"></td>
+				<td>작성자 : <input type="text" id="rep_title" value="admin"></td>
 			</tr>
 			<tr>
 				<td>내용 : <textarea id="rep_content"></textarea></td>
