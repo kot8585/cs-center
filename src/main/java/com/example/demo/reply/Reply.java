@@ -76,8 +76,9 @@ public class Reply {
 
 	@Override
 	public String toString() {
-		return "Reply [num=" + num + ", board_num=" + board_num + ", writer=" + writer + ", content=" + content
-				+ ", r_date=" + r_date + ", path=" + path + "]";
+		return "Reply\n"+"num,board_num,writer,content"
+				+ ",r_date,path\n" 
+				+ num + "," + board_num + "," + writer + "," + content + "," + r_date + "," + path;
 	}
 
 }

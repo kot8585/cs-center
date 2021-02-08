@@ -18,7 +18,6 @@ public class ReplyController {
 
 	@RequestMapping("/rep/write")
 	public String write(Reply r) {
-		System.out.println("ReplyController.write()");
 		service.addReply(r);
 		return "redirect:/rep/list?board_num=" + r.getBoard_num();
 	}
@@ -27,21 +26,18 @@ public class ReplyController {
 	@ResponseBody
 	@RequestMapping(value = "/rep/list")
 	public List<Reply> list(int board_num) {
-		System.out.println("ReplyController.list()");
 		return service.getReplyByBoardNum(board_num);
 	}
 
 	//댓글 수정 - 안됌
 	@RequestMapping("/rep/edit")
 	public void edit(int board_num) {
-		System.out.println("ReplyController.edit()");
 	}
 
 	
 	//댓글 삭제 - 안됌
 	@RequestMapping(value = "/rep/del", method = RequestMethod.POST)
 	public Map<String, Object> del(int num) {
-		System.out.println("ReplyController.del()");
 
 		Map<String, Object> result = new HashMap<>();
 

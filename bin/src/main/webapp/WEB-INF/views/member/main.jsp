@@ -15,7 +15,11 @@
 <a href="${ pageContext.request.contextPath }/member/loginForm">로그인</a>
 <a href="${ pageContext.request.contextPath }/member/joinForm">회원가입</a>
 <a href="${ pageContext.request.contextPath }/mypage/mypage">마이페이지</a>
-<a href="${ pageContext.request.contextPath }/board/list">고객센터</a>
+<a href="${ pageContext.request.contextPath }/board/list">고객센터</a><br>
+<c:if test="${sessionScope.id eq '' }">
+	${sessionScope.id }님 어소와라
+</c:if>
+
 
 <c:import url="${ pageContext.request.contextPath }/product/list"></c:import>
 </body>
