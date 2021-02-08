@@ -1,12 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<script>
+
+	
+	function del(num){
+		
+		location.href="${pageContext.request.contextPath}/review/delReview?num="+num;
+		
+		
+	}
+</script>
 </head>
 <body>
+<form name="f" method="POST" action="${pageContext.request.contextPath }/review/editReview">
    <table border="1" cellspacing="0">
       <thead>
          <tr>
@@ -15,11 +27,11 @@
          </tr>
            <tr>
             <th>상품번호</th>
-            <td>${r.pnum}</td>
+            <td><input type="text" name="pnum" value="${r.pnum}" readonly></td>
          </tr>
            <tr>
             <th>제목</th>
-            <td><a href="${pageContext.request.contextPath }/review/reviewDetail">${r.title}</a></td>
+            <td><input type="text" name="title" value="${r.title }"></td>
          </tr>
            <tr>
             <th>작성자</th>
@@ -27,19 +39,24 @@
          </tr>
            <tr>
             <th>내용</th>
-            <td>${r.content}</td>
+            <td><input type="text" name="content" value="${r.content}"></td>
          </tr>
            <tr>
             <th>작성날짜</th>
             <td><fmt:formatDate pattern="yyyy-MM-dd" value="${r.pdate}" /></td>
          </tr>
          <tr>
-         
+         	<td colspan="2">
+         		<input type="submit" value="수정">
+         		<input type="button" value="삭제" onclick="del(${r.num})">
+         	</td>
+         </tr>
           
       </thead>
      
     
      
    </table>
+   </form>
 </body>
 </html>

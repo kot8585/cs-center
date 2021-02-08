@@ -26,7 +26,7 @@ var sessionId = '<%=session.getAttribute("id") %>'
 </head>
 <body>
 	
-	<h3></h3>
+	<h3>고객센터</h3>
 	<table border="1" cellspacing="0">
 		<thead>
 			<tr>

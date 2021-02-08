@@ -250,6 +250,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/admin/boardDetail")
+
 	public ModelAndView boardDetail(@RequestParam("num") int num, HttpServletRequest req) {
 		HttpSession session = req.getSession(false);
 		ModelAndView mav = new ModelAndView("admin/boardDetail");
@@ -257,7 +258,7 @@ public class AdminController {
 		if (session == null) {
 			mav.setViewName("admin/adminLoginForm");
 		}
-		
+
 		Board b = boardService.getBoardByNum(num);
 		
 		String path = basePath + b.getNum() + "\\";

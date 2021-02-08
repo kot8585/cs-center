@@ -11,7 +11,7 @@
 	</resultMap>
 	
 	<insert id="insertCart" parameterType="com.example.demo.shoppingcart.Shoppingcart">
-		INSERT INTO cart VALUES( #{m_id}, #{p_num}, #{cost}, sysdate)
+		INSERT INTO cart VALUES( #{p_num}, #{m_id},  #{cost}, sysdate)
 	</insert>
 	
 	<select id="getShoppingcartById" parameterType="String" resultMap="cart">

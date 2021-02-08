@@ -12,17 +12,26 @@
       <result property="pdate" column="pdate" />
    </resultMap>
    
-   <insert id="insert" parameterType="com.example.demo.review.Review">
-      insert into review values(seq_review.NEXTVAL, #{pnum}, #{title}, #{writer}, #{content}, sysdate)
-   </insert>
+	<insert id="insert" parameterType="com.example.demo.review.Review">
+		insert into review values(seq_review.NEXTVAL, #{pnum}, #{title}, #{writer}, #{content}, sysdate)
+	</insert>
    
- <select id="select" resultMap="review" parameterType="String">
-   	SELECT * FROM review WHERE num=#{num} ORDER BY num
-   </select>
+ 	<select id="select" resultMap="review" parameterType="int">
+ 		SELECT * FROM review WHERE num=#{num} ORDER BY num
+	</select>
    
+	<select id="selectAll" resultMap="review" parameterType="String">
+		SELECT * FROM review ORDER BY num
+	</select>
+	
+	<update id="update" parameterType="com.example.demo.review.Review">
+		UPDATE review SET content=#{content}, pdate=SYSDATE WHERE num=#{num}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE review WHERE num=#{num}
+	</delete>
    
-   <select id="selectAll" resultMap="review" parameterType="String">
-   	SELECT * FROM review ORDER BY num
-   </select>
+  
    
    </mapper>

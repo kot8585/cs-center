@@ -43,6 +43,8 @@ public class BoardController {
 		return mav;
 	}
 	
+	
+	
 	@GetMapping("/board/writeForm")
 	public void writeForm() {
 	}
