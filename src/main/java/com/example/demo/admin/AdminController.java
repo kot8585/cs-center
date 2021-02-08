@@ -171,7 +171,7 @@ public class AdminController {
 	
 	@RequestMapping("/admin/boardDetail")
 	public ModelAndView boardDetail(@RequestParam("num") int num) {
-		ModelAndView mav = new ModelAndView("board/detail");
+		ModelAndView mav = new ModelAndView("admin/boardDetail");
 		Board b = boardService.getBoardByNum(num);
 		
 		String path = basePath + b.getNum() + "\\";
