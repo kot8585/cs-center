@@ -2,9 +2,11 @@ package com.example.demo.admin;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -29,6 +31,8 @@ import com.example.demo.reply.Reply;
 
 @Controller
 public class AdminController {
+	
+	// TODO 세션 id 없으면 쫓겨나게.
 	
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	
@@ -70,32 +74,95 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/admin/orderList")
-	public ModelAndView orderList(HttpServletRequest req) {
+	public ModelAndView orderList(HttpServletRequest req, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("admin/orderList");
+		String id = "";
+		HttpSession session = req.getSession(false);
+		
+		if (session == null) {
+			System.out.println("session null");
+			mav.setViewName("admin/adminLoginForm");
+		} else {
+			id = (String) session.getAttribute("id");
+		}
+		
+		if (id.isBlank()) {
+			mav.setViewName("admin/adminLoginForm");
+		}
+		System.out.println("id = " + id +", mav = " + mav.getViewName());
 		ArrayList<Order> list = orderService.getAllOrderList();
 		mav.addObject("list", list);
 		return mav;
+		
 	}
 	
 	@RequestMapping("/admin/productList")
 	public ModelAndView productList(HttpServletRequest req) {
+		String id = "";
+		HttpSession session = req.getSession(false);
 		ModelAndView mav = new ModelAndView("admin/productList");
+
+		if (session == null) {
+			System.out.println("session null");
+			mav.setViewName("admin/adminLoginForm");
+		} else {
+			id = (String) session.getAttribute("id");
+		}
+
+		if (id.isBlank()) {
+			mav.setViewName("admin/adminLoginForm");
+		}
+		
 		ArrayList<Product> list = (ArrayList<Product>) productService.getProductAll();
+		for (int i = 0; i < list.size(); i++) {
+	         String path = basePath + list.get(i).getNum() + "\\";
+	         File imgDir = new File(path);   
+	        
+	         String[] files = imgDir.list();
+	         if(imgDir.exists()) {
+	            for(int j = 0; j < files.length; j++) {
+	               mav.addObject("file" + j, files[j]);
+	            }
+	            list.get(i).setImgPath(files[0]);
+	         }
+	      }
 		mav.addObject("list", list);
 		return mav;
 	}
 	
 	@RequestMapping("/admin/boardList")
 	public ModelAndView boardList(HttpServletRequest req) {
+		String id = "";
+		HttpSession session = req.getSession(false);
 		ModelAndView mav = new ModelAndView("admin/boardList");
+		
+		if (session == null) {
+			System.out.println("session null");
+			mav.setViewName("admin/adminLoginForm");
+		} else {
+			id = (String) session.getAttribute("id");
+		}
+		
+
+		if (id.isBlank()) {
+			mav.setViewName("admin/adminLoginForm");
+		}
+		
 		ArrayList<Board> list = (ArrayList<Board>) boardService.getAllBoard();
 		mav.addObject("list", list);
 		return mav;
+		
 	}
 	
 	@GetMapping("/admin/write")
 	public String writeForm(HttpServletRequest req) {
-		return "/admin/writeForm";
+		HttpSession session = req.getSession(false);
+		if (session == null) {
+			return "/admin/loginForm";
+		} else {
+			return "/admin/writeForm";
+		}
+		
 	}
 	
 	@PostMapping("/admin/write")
@@ -130,7 +197,14 @@ public class AdminController {
 	}
 	
 	@GetMapping("/admin/writeBoard")
-	public void writeForm() {
+	public String writeBoardForm(HttpServletRequest req) {
+		HttpSession session = req.getSession(false);
+		if (session == null) {
+			return "/admin/loginForm";
+		} else {
+			return "/admin/writeBoard";
+		}
+		
 	}
 	
 	@PostMapping("/admin/writeBoard")
@@ -146,8 +220,14 @@ public class AdminController {
 	
 	
 	@RequestMapping("/admin/detail")
-	public ModelAndView detail(@RequestParam("num") int num) {
+	public ModelAndView detail(@RequestParam("num") int num, HttpServletRequest req) {
+		HttpSession session = req.getSession(false);
 		ModelAndView mav = new ModelAndView("admin/detail");
+		
+		if (session == null) {
+			mav.setViewName("admin/adminLoginForm");
+		}
+		
 	    Product p = productService.getProductByNum(num);
 	      
 	    String path = basePath + p.getNum() + "\\";
@@ -170,8 +250,14 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/admin/boardDetail")
-	public ModelAndView boardDetail(@RequestParam("num") int num) {
-		ModelAndView mav = new ModelAndView("board/detail");
+	public ModelAndView boardDetail(@RequestParam("num") int num, HttpServletRequest req) {
+		HttpSession session = req.getSession(false);
+		ModelAndView mav = new ModelAndView("admin/boardDetail");
+
+		if (session == null) {
+			mav.setViewName("admin/adminLoginForm");
+		}
+		
 		Board b = boardService.getBoardByNum(num);
 		
 		String path = basePath + b.getNum() + "\\";
