@@ -86,7 +86,7 @@ function fn_delReply(num){
 </head>
 <body>
 
-<c:import url="${ pageContext.request.contextPath }/product/list"></c:import>
+
 
 	<c:if test="${sessionScope.id ne b.writer }">
 		<c:set var="data" value="readonly" />
