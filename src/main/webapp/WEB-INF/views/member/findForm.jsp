@@ -7,9 +7,19 @@
 <title>ID/PWD 찾기 Page</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
+function checkEmpty(){
+	var email = document.getElementById("email");
+	var name = document.getElementById("name");
+	if(email.value == ""){
+		alert("email주소를 입력해주세요.");
+		return;
+	}
+	if(name.value == ""){
+		alert("이름을 입력해주세요");
+	}
+}	
 $(document).ready(function(){
 	$("#find").click(function(){
-		alert("clicked");
 		$.post("/member/find", {email: $("#email").val(), name: $("#name").val()})
 		.done(function(data){
 			$("#findId").text(data);
@@ -34,7 +44,7 @@ $(document).ready(function(){
 			<td><input type="text" name="name"id="name"></td>
 		</tr>
 		<tr>
-			<td colspan="2"><input type="button" id="find" value="find"></td>
+			<td colspan="2"><input type="button" id="find" value="find" onclick="checkEmpty()"></td>
 		</tr>
 	</table>
 </form>
