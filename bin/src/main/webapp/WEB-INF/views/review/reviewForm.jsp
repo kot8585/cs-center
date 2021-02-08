@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+
 <form action="${pageContext.request.contextPath }/review/write">
 <table border="300">
 <tr>
@@ -15,7 +17,7 @@
 </tr>
 <tr>
 <td>작성자<td>
-<td><input type="text" name="writer"><td>
+<td><input type="text" name="writer" value="${sessionScope.id }" readonly><td>
 </tr>
 <tr>
 <td>내용<td>
@@ -25,7 +27,8 @@
 <td colspan="2">
 <input type="submit" value="작성">
 <input type="reset" value="지우기">
-<input type="hidden" name="pnum" value="2">
+<input type="hidden" name="pnum" value="${p.num }">
+
 </td>
 </tr>
 </table>

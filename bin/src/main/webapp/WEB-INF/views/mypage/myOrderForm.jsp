@@ -7,6 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script>
+	function go(i){
+		location.href="${pageContext.request.contextPath}/review/reviewForm?pnum="+i;
+	}
+</script>
 </head>
 <body>
 <c:if test="${empty list }">
@@ -26,7 +31,7 @@
 	<td>${ p.o_date }</td>
 	<td>${ p.cost }</td>
 	<td>${ p.state }</td>
-	<td><input type="button" value="리뷰작성"></td>
+	<td><input type="button" value="리뷰작성" onclick="go(${p.p_num})"></td>
 </tr>
 </c:forEach>
 </table>

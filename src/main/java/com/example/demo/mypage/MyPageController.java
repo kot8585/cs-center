@@ -37,38 +37,32 @@ public class MyPageController {
 	
 	@RequestMapping("/mypage/mypage")
 	public void mypage() {
-		System.out.println("MyPageController.mypage()");
 	}
 	
 	@RequestMapping("/mypage/shoppingcartForm")
 	public ModelAndView shoppingcartForm(HttpServletRequest req) {
-		System.out.println("MyPageController.shoppingcartForm()");
 		ModelAndView mav = new ModelAndView("mypage/shoppingcartForm");
 		HttpSession session = req.getSession(false);
 		// 로그인 미구현		
 		String id = (String) session.getAttribute("id");
 		// 추후 로그인 구현 후 세션의 id 값이 null이거나 공백이면 login.jsp 로 이동하게끔 설계
 		ArrayList<Shoppingcart> list = cartService.getShoppingcartById(id);
-		System.out.println(list.toString());
 		mav.addObject("list", list);
 		return mav;
 	}
 	
 	@RequestMapping("/mypage/myOrderForm")
 	public ModelAndView myOrderForm(HttpServletRequest req) {
-		System.out.println("MyPageController.myOrderForm()");
 		ModelAndView mav = new ModelAndView("mypage/myOrderForm");
 		HttpSession session = req.getSession(false);
 		String id = (String) session.getAttribute("id");
 		ArrayList<Order> list = orderService.getMyOrderListById(id);
-		System.out.println(list.get(0).toString());
 		mav.addObject("list", list);
 		return mav;
 	}
 	
 	@RequestMapping("/mypage/myQuestionForm")
 	public ModelAndView myQuestionForm(HttpServletRequest req) {
-		System.out.println("MyPageController.myQuestionForm()");
 		ModelAndView mav = new ModelAndView("mypage/myQuestionForm");
 		
 		HttpSession session = req.getSession(false);
@@ -81,7 +75,6 @@ public class MyPageController {
 			board.setReps(reply);
 		}
 		
-		System.out.println(list.get(0).toString());
 		mav.addObject("list", list);
 		return mav;
 	}

@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +30,8 @@ import com.example.demo.reply.Reply;
 @Controller
 public class AdminController {
 	
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
+	
 	public static String basePath = "C:\\shopimg\\";
 	
 	@Autowired
@@ -44,23 +48,19 @@ public class AdminController {
 	
 	@RequestMapping("/admin")
 	public String admin_root() {
-		System.out.println("AdminController.admin_root()");
 		return "redirect:/admin/loginForm";
 	}
 	
 	@RequestMapping("/admin/loginForm")
 	public String admin_loginForm() {
-		System.out.println("AdminController.admin_loginForm()");
 		return "admin/adminLoginForm";
 	}
 	
 	@RequestMapping("/admin/login")
 	public String login(Admin ad, HttpServletRequest req) {
-		System.out.println("AdminController.login()");
 		Admin admin = adminService.getAdmin(ad.getId());
-		System.out.println("admin ID : " + admin.getId());
 		if (admin == null || !admin.getPassword().equals(ad.getPassword())) {
-			System.out.println("로그인 실패");
+			log.error("로그인 실패 : " + ad.toString());
 			return "/admin/loginForm";
 		} else { // 로그인 성공시
 			HttpSession session = req.getSession();
@@ -71,7 +71,6 @@ public class AdminController {
 	
 	@RequestMapping("/admin/orderList")
 	public ModelAndView orderList(HttpServletRequest req) {
-		System.out.println("AdminController.orderList()");
 		ModelAndView mav = new ModelAndView("admin/orderList");
 		ArrayList<Order> list = orderService.getAllOrderList();
 		mav.addObject("list", list);
@@ -80,7 +79,6 @@ public class AdminController {
 	
 	@RequestMapping("/admin/productList")
 	public ModelAndView productList(HttpServletRequest req) {
-		System.out.println("AdminController.productList()");
 		ModelAndView mav = new ModelAndView("admin/productList");
 		ArrayList<Product> list = (ArrayList<Product>) productService.getProductAll();
 		mav.addObject("list", list);
@@ -89,7 +87,6 @@ public class AdminController {
 	
 	@RequestMapping("/admin/boardList")
 	public ModelAndView boardList(HttpServletRequest req) {
-		System.out.println("AdminController.boardList()");
 		ModelAndView mav = new ModelAndView("admin/boardList");
 		ArrayList<Board> list = (ArrayList<Board>) boardService.getAllBoard();
 		mav.addObject("list", list);
@@ -98,14 +95,11 @@ public class AdminController {
 	
 	@GetMapping("/admin/write")
 	public String writeForm(HttpServletRequest req) {
-		System.out.println("AdminController.writeForm()");
 		return "/admin/writeForm";
 	}
 	
 	@PostMapping("/admin/write")
 	public String write(Product p) {
-		System.out.println("AdminController.write()");
-		System.out.println(p.toString());
 		int num = productService.getNum();
 		p.setNum(num);
 		saveImg(num, p.getFile1());
@@ -116,7 +110,6 @@ public class AdminController {
 	}
 	
 	public void saveImg(int num, MultipartFile file) { //이미지 저장하기
-		System.out.println("AdminController.saveImg()");
 		String fileName = file.getOriginalFilename();
 		if(fileName != null && !fileName.equals("")) {
 			File dir = new File(basePath + num);
@@ -138,14 +131,11 @@ public class AdminController {
 	
 	@GetMapping("/admin/writeBoard")
 	public void writeForm() {
-		System.out.println("/board/writeForm");
 	}
 	
 	@PostMapping("/admin/writeBoard")
 	public String write(Board b) {
-		System.out.println("/board/write");
 		int num = boardService.getNum();
-		System.out.println("게시물의 num : " + num );
 		b.setNum(num);
 		saveImg(num, b.getFile1());
 		saveImg(num, b.getFile2());
@@ -158,7 +148,6 @@ public class AdminController {
 	@RequestMapping("/admin/detail")
 	public ModelAndView detail(@RequestParam("num") int num) {
 		ModelAndView mav = new ModelAndView("admin/detail");
-		System.out.println("AdminController.detail()");
 	    Product p = productService.getProductByNum(num);
 	      
 	    String path = basePath + p.getNum() + "\\";
@@ -176,15 +165,12 @@ public class AdminController {
 	
 	@RequestMapping("/admin/edit")
 	public String edit(Product p) {
-		System.out.println("AdminController.edit()");
 		productService.editProduct(p);
-		System.out.println(p.toString());
 		return "/admin/admin";
 	}
 	
 	@RequestMapping("/admin/boardDetail")
 	public ModelAndView boardDetail(@RequestParam("num") int num) {
-		System.out.println("AdminController.boardDetail()");
 		ModelAndView mav = new ModelAndView("board/detail");
 		Board b = boardService.getBoardByNum(num);
 		

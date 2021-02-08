@@ -5,11 +5,12 @@ import java.sql.Date;
 public class Review {
 
 	 private int num;
-	   private int pnum;
-	   private String title;
-	   private String writer;
-	   private String content;
-	   private Date pdate;
+	 private int pnum;
+	 private String title;
+	 private String writer;
+	 private String content;
+	 private Date pdate;
+	   
 	public Review() {
 		super();
 	}
@@ -60,8 +61,8 @@ public class Review {
 	}
 	@Override
 	public String toString() {
-		return "Review [num=" + num + ", pnum=" + pnum + ", title=" + title + ", writer=" + writer + ", content="
-				+ content + ", pdate=" + pdate + "]";
+		return "Review\n" + "num, pnum, title, writer, content, pdate\n" 
+				+ num + "," + pnum + "," + title + "," + writer + "," + content + "," + pdate;
 	}
 	   
 	   

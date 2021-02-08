@@ -154,9 +154,10 @@ public class Order {
 
 	@Override
 	public String toString() {
-		return "Order [num=" + num + ", m_id=" + m_id + ", p_num=" + p_num + ", quantity=" + quantity + ", o_date="
-				+ o_date + ", address=" + address + ", tel=" + tel + ", cost=" + cost + ", state=" + state + ", p=" + p
-				+ ", m=" + m + "]";
+		return "Order\n num,m_id,p_num,quantity,o_date,address,tel,cost,state,p,m\n" 
+				+ num + "," + m_id + "," + p_num + "," + quantity + "," 
+				+ o_date + "," + address + "," + tel + "," + cost + "," 
+				+ state + "," + p.toString() + "," + m.toString();
 	}
 
 }

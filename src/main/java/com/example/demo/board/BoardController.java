@@ -38,9 +38,6 @@ public class BoardController {
 	public ModelAndView list() {
 		System.out.println("/board/list()");
 		ArrayList<Board> list = (ArrayList<Board>) service.getAllBoard();
-
-		
-
 		ModelAndView mav = new ModelAndView("board/list");
 		mav.addObject("list", list);
 		return mav;
@@ -48,14 +45,11 @@ public class BoardController {
 	
 	@GetMapping("/board/writeForm")
 	public void writeForm() {
-		System.out.println("/board/writeForm");
 	}
 	
 	@PostMapping("/board/write")
 	public String write(Board b) {
-		System.out.println("/board/write");
 		int num = service.getNum();
-		System.out.println("게시물의 num : " + num );
 		b.setNum(num);
 		saveImg(num, b.getFile1());
 		saveImg(num, b.getFile2());
@@ -65,7 +59,6 @@ public class BoardController {
 	}
 	
 	public void saveImg(int num, MultipartFile file) { //이미지 저장하기
-		System.out.println("BoardController.saveImg()");
 		String fileName = file.getOriginalFilename();
 		if(fileName != null && !fileName.equals("")) {
 			File dir = new File(basePath + num);
@@ -76,10 +69,8 @@ public class BoardController {
 			try {
 				file.transferTo(f);
 			} catch (IllegalStateException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -110,7 +101,6 @@ public class BoardController {
 	
 	@RequestMapping("/board/img")
 	public ResponseEntity<byte[]> getImg(String fname, int num){
-		System.out.println("/board/img");
 		String path = basePath + num + "\\" + fname;
 		File f = new File(path);
 		HttpHeaders header = new HttpHeaders();
@@ -119,7 +109,6 @@ public class BoardController {
 			header.add("Content-Type", Files.probeContentType(f.toPath()));
 			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(f),header, HttpStatus.OK);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 		return result;
@@ -127,7 +116,6 @@ public class BoardController {
 	
 	@RequestMapping("/board/edit")
 	public String edit(Board b) {
-		System.out.println("BoardController.edit()");
 		service.update(b);
 		return "redirect:/board/list";
 	}

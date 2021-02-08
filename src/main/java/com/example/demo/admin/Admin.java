@@ -32,7 +32,7 @@ public class Admin {
 
 	@Override
 	public String toString() {
-		return "Admin [id=" + id + ", password=" + password + "]";
+		return "admin\n" + "id, password\n" + id + "," + password;
 	}
 	
 	

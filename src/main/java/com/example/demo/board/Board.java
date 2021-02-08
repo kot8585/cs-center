@@ -146,9 +146,18 @@ public class Board {
 
 	@Override
 	public String toString() {
-		return "Board [num=" + num + ", pwd=" + pwd + ", writer=" + writer + ", title=" + title + ", content=" + content
-				+ ", b_date=" + b_date + ", path=" + path + ", reps=" + reps + ", file1=" + file1 + ", file2=" + file2
-				+ ", file3=" + file3 + "]";
+		String rep = "";
+		if (reps.isEmpty()) {
+			rep = "NULL";
+		} else {
+			rep = reps.size() + "개의 rep을 가진 ArrayList";
+		}
+		
+		return "board\n" + "num,pwd,writer,title,content,"
+				+ "b_date,path,reps,file1,file2,file3\n"
+				+ num + "," + pwd + "," + writer + "," + title + ","
+				+ content + "," + b_date + "," + path + "," + rep + ","
+				+ file1.getName() + "," + file2.getName() + "," + file3.getName();
 	}
 	
 	

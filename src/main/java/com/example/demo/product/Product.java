@@ -148,12 +148,15 @@ public MultipartFile getFile3() {
 public void setFile3(MultipartFile file3) {
 	this.file3 = file3;
 }
+
 @Override
 public String toString() {
-	return "Product [num=" + num + ", name=" + name + ", maker=" + maker + ", price=" + price + ", origin=" + origin
-			+ ", material=" + material + ", quantity=" + quantity + ", imgPath=" + imgPath + ", category1_id="
-			+ category1_id + ", category2_id=" + category2_id + ", category3_id=" + category3_id + ", event_num="
-			+ event_num + ", file1=" + file1 + ", file2=" + file2 + ", file3=" + file3 + "]";
+	return "Product/n" + "num,name,maker,price,origin," 
+			+ ",material,quantity,imgPath,category1_id,"
+			+ "category2_id,category3_id,event_num\n"
+			+ num + "," + name + "," + maker + "," + price + ","
+			+ origin + "," + material + "," + quantity + "," + imgPath + "," 
+			+ category1_id + "," + category2_id + "," + category3_id + "," + event_num;
 }
   
 
