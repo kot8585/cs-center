@@ -90,8 +90,9 @@ public class ReviewController {
 	}
 	
 	@RequestMapping("/review/delReview")
-	public String del() {
-		
+	public String del(@RequestParam("num")int num) {
+		System.out.println("ReviewController.del()");
+		service.delReview(num);
 		return "redirect:/member/main";
 		
 	}

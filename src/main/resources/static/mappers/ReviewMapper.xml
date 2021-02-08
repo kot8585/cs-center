@@ -27,6 +27,10 @@
 	<update id="update" parameterType="com.example.demo.review.Review">
 		UPDATE review SET content=#{content}, pdate=SYSDATE WHERE num=#{num}
 	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE review WHERE num=#{num}
+	</delete>
    
   
    

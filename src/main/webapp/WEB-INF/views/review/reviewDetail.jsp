@@ -9,8 +9,10 @@
 <script>
 
 	
-	function del(){
-		location.href="/review/delReview";
+	function del(num){
+		
+		location.href="${pageContext.request.contextPath}/review/delReview?num="+num;
+		
 		
 	}
 </script>
@@ -46,7 +48,7 @@
          <tr>
          	<td colspan="2">
          		<input type="submit" value="수정">
-         		<input type="button" value="삭제" onclick="del()">
+         		<input type="button" value="삭제" onclick="del(${r.num})">
          	</td>
          </tr>
           
