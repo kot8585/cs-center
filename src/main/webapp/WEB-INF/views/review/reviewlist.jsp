@@ -28,7 +28,7 @@
          </tr>
            <tr>
             <th>제목</th>
-            <td><a href="${pageContext.request.contextPath }/review/reviewDetail">${r.title}</a></td>
+            <td><a href="${pageContext.request.contextPath }/review/reviewDetail?num=${r.num}">${r.title}</a></td>
          </tr>
            <tr>
             <th>작성자</th>
