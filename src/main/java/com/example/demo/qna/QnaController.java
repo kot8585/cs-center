@@ -1,4 +1,4 @@
-package com.example.demo.board;
+package com.example.demo.qna;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,73 +15,107 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.order.OrderService;
 import com.example.demo.reply.RepService;
 import com.example.demo.reply.Reply;
 
 @Controller
-public class BoardController {
+public class QnaController {
 	
 	@Autowired
-	private BoardService service;
+	private QnaService service;
 	
 	@Autowired
 	private RepService repService;
+	
+	@Autowired
+	private OrderService orderService;
 	
 	public static String basePath = "C:\\img\\";
 	/*게시물 리스트 뽑기
 	 * author : 문효정
 	 */
 	
-	//타입에 맞는 게시판 목록 가져오기
-	@RequestMapping(value="/board/{type}/list", method=RequestMethod.GET)
-	public ModelAndView list(@PathVariable String type) {
-		System.out.println("board/type = " + type);
-		ArrayList<Board> list = (ArrayList<Board>) service.getBoardByType(type);
+	//admin에서 쓰는지 확인하고 쓰면 admin으로 옮기기 //qnd/list로 바꿔야함
+	@GetMapping("/board/list")
+	public ModelAndView list() {
+		System.out.println("/board/list()");
+//		ArrayList<Qna> list = (ArrayList<Qna>) service.getAllBoard();
 		ModelAndView mav = new ModelAndView("board/list");
-		mav.addObject("list", list);
+//		mav.addObject("list", list);
 		return mav;
 	}
 	
-	//해당 url로 바로 들어올 경우를 대비해 한번더 검사하기
-	@GetMapping("/board/writeForm") 
+	
+	
+	//로그인을 하지 않고 해당 url로 바로 들어올 경우를 대비해 한번더 검사하기
+	@GetMapping("/qna/QuestionForm") 
 	public String writeForm(HttpServletRequest req) {
 		HttpSession session = req.getSession(false);
 		String id = (String) session.getAttribute("id");
 		if(id.isBlank()) {
 			return "redirect:member/loginForm";
 		}else {
-			return "/board/write";
+			return "/qna/QuestionForm";
 		}
 	}
 	
-	@PostMapping("/board/write")
-	public String write(Board b) {
 	
-		service.addBoard(b);
-		return "redirect:/board/list";
+	@PostMapping("/qna/write")
+	public String write(Qna q) {
+		int num = service.getNum();
+		q.setNum(num);
+		saveImg(num, q.getFile1());
+		saveImg(num, q.getFile2());
+		saveImg(num, q.getFile3());
+		service.addQna(q);
+		return "redirect:/mypage/myQuestion";
 	}
 	
+	public void saveImg(int num, MultipartFile file) { //이미지 저장하기
+		String fileName = file.getOriginalFilename();
+		if(fileName != null && !fileName.equals("")) {
+			File dir = new File(basePath + num);
+			if (!dir.exists()) {
+				dir.mkdirs();
+			}
+			File f = new File(basePath + num + "\\" + fileName);
+			try {
+				file.transferTo(f);
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 	
-	@RequestMapping("/board/detail")
+	@RequestMapping("/qna/detail")
 	public ModelAndView detail(int num) {
 		System.out.println("/board/detail()");
-		ModelAndView mav = new ModelAndView("board/detail");
+		ModelAndView mav = new ModelAndView("qna/detail");
 		System.out.println(num);
-		Board b = service.getBoardByNum(num);
+		Qna q = service.getQnaByNum(num);
 
-	
-		mav.addObject("b", b);
-		return mav;
+		String path = basePath + q.getNum() + "\\";
+		File imgDir = new File(path);
+		if(imgDir.exists()) {
+			String[] files  = imgDir.list();
+			for (int j = 0; j < files.length; j++) {
+				System.out.println(files[j].toString());
+				mav.addObject("file" + j, files[j]); 
+			}
 	}
+		mav.addObject("q", q);
+		return mav;
+}
 	
-	@RequestMapping("/board/img")
+	@RequestMapping("/qna/img")
 	public ResponseEntity<byte[]> getImg(String fname, int num){
 		String path = basePath + num + "\\" + fname;
 		File f = new File(path);
@@ -96,16 +130,16 @@ public class BoardController {
 		return result;
 	}
 	
-	@RequestMapping("/board/edit")
-	public String edit(Board b) {
+	@RequestMapping("/qna/edit")
+	public String edit(Qna b) {
 		service.update(b);
-		return "redirect:/board/list";
+		return "redirect:/mypage/myQuestion";
 	}
 	
-	@RequestMapping("/board/del")
+	@RequestMapping("/qna/del")
 	public String del(int num) {
 		System.out.println("BoardController.del()");
-		service.delBoard(num);
+		service.delQna(num);
 		
 		//이미지 삭제하기
 		String path = basePath + num+"\\"; 
@@ -120,6 +154,8 @@ public class BoardController {
 		}
 		imgDir.delete();
 		
-		return "redirect:/board/list";
+		return "redirect:/mypage/myQuestion";
 	}
+	
+//	@RequestMapping("/qna/getO_num"){ //상품명이랑 주문일자 가져오기
 }

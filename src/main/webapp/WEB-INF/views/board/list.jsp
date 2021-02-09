@@ -18,15 +18,17 @@ var sessionId = '<%=session.getAttribute("id") %>'
          location.href= "${pageContext.request.contextPath }/member/loginForm";
       } else {
          
-         location.href="${pageContext.request.contextPath }/board/writeForm";
+         location.href="${pageContext.request.contextPath }/qna/QuestionForm";
       }});
    });
 
 </script>
 </head>
 <body>
-<a href="${pageContext.request.contextPath }/member/main">Maim</a>
-	<h3>자주묻는질문</h3>
+<a href="${pageContext.request.contextPath }/member/main">Main</a>
+	<h3>고객센터</h3>
+	<a href="${pageContext.request.contextPath }/board/faq/list">자주묻는 질문</a>
+	<a href="${pageContext.request.contextPath }/board/notice/list">공지사항</a>
 	<table border="1" cellspacing="0">
 		<thead>
 			<tr>
@@ -42,7 +44,7 @@ var sessionId = '<%=session.getAttribute("id") %>'
 				<td><c:out value="${b.num}" /></td>
 				<td><a href="${pageContext.request.contextPath }/board/detail?num=${b.num } ">${b.title} </a></td>
 				<td><c:out value="${b.writer}" /></td>
-				<td><fmt:formatDate pattern="yyyy-MM-dd" value="${b.b_date}" /></td>
+				<td><fmt:formatDate pattern="yyyy-MM-dd" value="${b.updatedate}" /></td>
 			</tr>
 		</c:forEach>
 	</table>

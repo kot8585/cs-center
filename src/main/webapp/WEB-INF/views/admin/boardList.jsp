@@ -27,11 +27,12 @@ function go(i) {
 <c:forEach var="p" items="${list }">
 <tr>
 	<td>${ p.num }</td>
-	<td>${ p.pwd }</td>
+<!--<td>${ p.pwd }</td> -->	
 	<td>${ p.writer }</td>
 	<td>${ p.title }</td>
 	<td>${ p.content }</td>
-	<td>${ p.b_date }</td>
+<%-- <td>${ p.b_date }</td> --%>
+	<td>${ p.updatedate }</td>
 	<td><input type="button" value="답변하기" id="answerBtn" onclick="javascript:go(${p.num})"></td>
 </tr>
 </c:forEach>

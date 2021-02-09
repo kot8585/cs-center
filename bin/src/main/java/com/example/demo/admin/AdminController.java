@@ -2,6 +2,7 @@ package com.example.demo.admin;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,11 +22,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.board.Board;
 import com.example.demo.board.BoardService;
+import com.example.demo.member.Member;
 import com.example.demo.order.Order;
 import com.example.demo.order.OrderService;
 import com.example.demo.product.Product;
 import com.example.demo.product.ProductService;
-import com.example.demo.qna.QnaService;
+import com.example.demo.reply.Reply;
 
 @Controller
 public class AdminController {
@@ -47,9 +49,6 @@ public class AdminController {
 
 	@Autowired
 	private BoardService boardService;
-	
-	@Autowired
-	private QnaService qnaService;
 	
 	@RequestMapping("/admin")
 	public String admin_root() {
