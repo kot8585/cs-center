@@ -23,35 +23,43 @@ public class MemberController {
 	
 	@RequestMapping("/")
 	public String root() throws Exception {
+		//main페이지를 첫화면으로 설정한다. 
 		return "redirect:/member/main";
 	}
 	
 	@RequestMapping("/member/main")
 	public void main() {
+		//main.jsp를 불러와 화면에 보여준다.
 	}
 	
 
 	@RequestMapping("/member/joinForm")
 	public void joinForm() {
-	}
+		//joinForm.jsp를 불러와 화면에 보여준다.
+		}
 	
 	@RequestMapping("/member/join")
 	public String join(Member m) {
+		//joinForm에서 입력받은 값을 m에 담고 db에 저장한다.
 		service.addMember(m);
 		return "member/loginForm";
 	}
 	
 	@RequestMapping("/member/loginForm")
 	public void loginForm() {
+		//loginForm.jsp를 불러와 화면에 보여준다
 	}
 	
 	@RequestMapping("/member/login")
 	public String login(Member m, HttpServletRequest req) {
+		//loginForm에서 입력받은 값을 m에 담고 해당하는 아이디에 대한 db 값을 m2에 담는다 
 		Member m2 = service.getMember(m.getId());
+		// DB로부터 받아온 값이 없고, 받아온 비밀번호가 입력한 비밀번호값과 일치하지않으면 로그인 실패 -> loginForm으로 되돌린다.
 		if (m2 == null || !m2.getPassword().equals(m.getPassword())) {
 			log.error("로그인 실패 : " + m.toString());
 			return "member/loginForm";
-		} else { // 로그인 성공시
+		// 로그인 성공시 session을 통해 id 값을 저장한다.
+		} else {
 			HttpSession session = req.getSession();
 			session.setAttribute("id", m2.getId());
 			return "/member/main";
@@ -92,18 +100,41 @@ public class MemberController {
 	}
 	
 	
+	@RequestMapping(value = "/member/idCheck")
+	public ModelAndView idCheck(HttpServletRequest req, 
+			@RequestParam(value = "id") String id) {
+		System.out.println("MemController.idCheck() id : " + id);
+		HttpSession session = req.getSession(false);
+		ModelAndView mav = new ModelAndView("member/idCheck");
+		String result = "";
+		Member m = service.getMember(id);
+		if (m == null) {
+			result = "사용가능"; // joinForm.jsp의 div(id=idResult)에 텍스트 채워줄 용
+			session.setAttribute("idCheck", true);
+		} else {
+			result = "사용불가능"; // joinForm.jsp의 div(id=idResult)에 텍스트 채워줄 용
+			session.setAttribute("idCheck", false);
+		}
+		System.out.println(session.getAttribute("idCheck"));
+		mav.addObject("result", result);
+		return mav;
+	}
+	
 	@RequestMapping(value="/member/editForm")
 	public ModelAndView editForm(HttpServletRequest req) {
 		HttpSession session = req.getSession();
+		//로그인된 아이디 값을 session을 통해 받아온다.
 		ModelAndView mav = new ModelAndView("/member/editForm");
+		//세션에 저장된 id값을 새로 지정한다.
 		String id = (String)session.getAttribute("id");
-		Member m= service.getMember(id);
+		Member m = service.getMember(id);
 		mav.addObject("m", m);
 		return mav;
 	}
 	
 	@RequestMapping(value="/member/edit")
 	public String edit(HttpServletRequest req, Member m) {
+		//로그인된 아이디 값을 session을 통해 받아온다.
 		HttpSession session = req.getSession();
 		service.editMember(m);
 		return "/mypage/mypage";
@@ -111,16 +142,21 @@ public class MemberController {
 	
 	@RequestMapping(value = "/member/logout")
 	public String logout(HttpServletRequest req) {
+		//로그인된 아이디 값을 session을 통해 받아온다.
 		HttpSession session = req.getSession(false);
 		session.removeAttribute("id");
+		//id에 대한 세션을 지운다.
 		session.invalidate();
 		return "member/loginForm";
 	}
 
 	@RequestMapping(value = "/member/out")
 	public String out(HttpServletRequest req) {
+		//로그인된 아이디 값을 session을 통해 받아온다.
 		HttpSession session = req.getSession(false);
+		//세션에 저장된 id값을 새로 지정한다.
 		String id = (String) session.getAttribute("id");
+		//새로 지정한 id값을 통해 db에 저장된 id에 대한 정보들을 삭제한다.
 		service.delMember(id);
 		session.removeAttribute("id");
 		session.invalidate();
