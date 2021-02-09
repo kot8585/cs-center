@@ -44,4 +44,9 @@
 	<select id="getNum" resultType="int">
 		SELECT seq_board.nextval FROM dual
 	</select>
+	
+	
+	<select id="selectNotice" resultMap="board">
+		select * from board where writer='admin' order by num
+	</select>
 </mapper>

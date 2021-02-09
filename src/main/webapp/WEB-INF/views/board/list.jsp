@@ -13,7 +13,7 @@ var sessionId = '<%=session.getAttribute("id") %>'
 
    $(document).ready(function(){ //한글확인하기
       $("#write").click(function(){
-         if(sessionId == '' || sessionId == null){
+         if(sessionId == '' || sessionId == 'null'){
          alert("로그인을 먼저 해주세요");
          location.href= "${pageContext.request.contextPath }/member/loginForm";
       } else {
@@ -26,7 +26,7 @@ var sessionId = '<%=session.getAttribute("id") %>'
 </head>
 <body>
 <a href="${pageContext.request.contextPath }/member/main">Maim</a>
-	<h3>1:1 문의</h3>
+	<h3>자주묻는질문</h3>
 	<table border="1" cellspacing="0">
 		<thead>
 			<tr>
@@ -48,7 +48,7 @@ var sessionId = '<%=session.getAttribute("id") %>'
 	</table>
 
 	세션 ID : <c:out value="${sessionScope.id}" />
-	<input type="button" id ="write" value="글작성">
+	<input type="button" id ="write" value="1:1문의">
 
 </body>
 </html>

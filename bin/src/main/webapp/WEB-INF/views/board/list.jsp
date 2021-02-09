@@ -25,8 +25,9 @@ var sessionId = '<%=session.getAttribute("id") %>'
 </script>
 </head>
 <body>
+<a href="${pageContext.request.contextPath }/member/main">Main</a>
+	<h3>고객센터</h3>
 	
-	<h3></h3>
 	<table border="1" cellspacing="0">
 		<thead>
 			<tr>
@@ -48,7 +49,7 @@ var sessionId = '<%=session.getAttribute("id") %>'
 	</table>
 
 	세션 ID : <c:out value="${sessionScope.id}" />
-	<input type="button" id ="write" value="글작성">
-
+	<input type="button" id ="write" value="1:1문의하기">
+야야야
 </body>
 </html>

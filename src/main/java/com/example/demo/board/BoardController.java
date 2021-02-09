@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -14,7 +17,6 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -30,11 +32,11 @@ public class BoardController {
 	@Autowired
 	private RepService repService;
 	
-	public static String basePath = "C:\\shopimg\\";
+	public static String basePath = "C:\\img\\";
 	/*게시물 리스트 뽑기
 	 * author : 문효정
 	 */
-	@RequestMapping("/board/list")
+	@GetMapping("/board/list")
 	public ModelAndView list() {
 		System.out.println("/board/list()");
 		ArrayList<Board> list = (ArrayList<Board>) service.getAllBoard();
@@ -43,10 +45,27 @@ public class BoardController {
 		return mav;
 	}
 	
+	//공지사항 불러오기
+	@GetMapping("/board/noticeList")
+	public ModelAndView AdminList() {
+		System.out.println("BoardController.NoticeList()");
+		ArrayList<Board> list = (ArrayList<Board>) service.getNotice();
+		ModelAndView mav = new ModelAndView("board/list");
+		mav.addObject("list", list);
+		return mav;
+	}
 	
 	
-	@GetMapping("/board/writeForm")
-	public void writeForm() {
+	//해당 url로 바로 들어올 경우를 대비해 한번더 검사하기
+	@GetMapping("/board/writeForm") 
+	public String writeForm(HttpServletRequest req) {
+		HttpSession session = req.getSession(false);
+		String id = (String) session.getAttribute("id");
+		if(id.isBlank()) {
+			return "redirect:member/loginForm";
+		}else {
+			return "/board/write";
+		}
 	}
 	
 	@PostMapping("/board/write")

@@ -16,4 +16,5 @@ public interface BoardMapper {
 	void update(Board b);
 	ArrayList<Board> getMyQuestionListById(String id);
 	int getNum();
+	List selectNotice();
 }	

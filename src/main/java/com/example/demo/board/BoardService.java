@@ -46,6 +46,8 @@ public class BoardService {
 		return mapper.getNum();
 	}
 
-	
+	public List getNotice() {
+		return mapper.selectNotice();
+	}
 	
 }
